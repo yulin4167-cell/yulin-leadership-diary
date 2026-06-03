@@ -1,0 +1,1076 @@
+/* ================================================================
+   Growing in Gentle Systems — Leadership Diary
+   App.css — all styles
+   ================================================================ */
+
+/* ── Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Design tokens ── */
+:root {
+  --cream:        #F7F3EA;
+  --charcoal:     #2F3430;
+  --charcoal-mid: #4B5450;
+  --charcoal-soft:#6B7570;
+  --sage:         #8FAF9C;
+  --sage-light:   #C8DDD4;
+  --sage-pale:    #E4EFE9;
+  --mist:         #BFD7D9;
+  --mist-light:   #DFF0F1;
+  --mist-pale:    #EEF7F8;
+  --wheat:        #E8C970;
+  --wheat-light:  #F5E4A8;
+  --wheat-pale:   #FBF3D8;
+  --border:       #D8D8D2;
+  --border-soft:  #E6E6E0;
+
+  --shadow-sm:    0 2px 8px rgba(47, 52, 48, 0.06);
+  --shadow-md:    0 4px 20px rgba(47, 52, 48, 0.09);
+  --shadow-lg:    0 8px 32px rgba(47, 52, 48, 0.13);
+
+  --radius:    18px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+
+  --font-body: Georgia, Palatino, 'Book Antiqua', 'Times New Roman', serif;
+  --font-ui:   -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+/* ── Base ── */
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Override template #root constraints */
+#root {
+  width: 100% !important;
+  max-width: 100% !important;
+  border-inline: none !important;
+  text-align: left !important;
+  display: block !important;
+  background: var(--cream);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-body);
+  font-weight: normal;
+  color: var(--charcoal);
+  line-height: 1.2;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+
+/* ================================================================
+   Layout
+   ================================================================ */
+
+.app {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ── Sidebar (desktop) ── */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 224px;
+  height: 100vh;
+  background: rgba(247, 243, 234, 0.94);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-right: 1px solid var(--border);
+  padding: 44px 28px 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+  z-index: 100;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.brand-glyph {
+  color: var(--sage);
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--charcoal-soft);
+}
+
+.nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--charcoal-soft);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  text-align: left;
+  width: 100%;
+  letter-spacing: 0.01em;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+
+.nav-link:hover {
+  background: var(--sage-pale);
+  color: var(--charcoal);
+}
+
+.nav-link--active {
+  background: var(--sage);
+  color: #fff;
+  font-weight: 500;
+}
+
+.nav-link--active:hover {
+  background: var(--sage);
+  color: #fff;
+}
+
+.sidebar-footer {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  color: var(--charcoal-soft);
+  opacity: 0.5;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+
+/* ── Main content ── */
+.main {
+  margin-left: 224px;
+  padding: 0 72px 0 72px;
+  max-width: 960px;
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ================================================================
+   Mobile header
+   ================================================================ */
+
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 58px;
+  background: rgba(247, 243, 234, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 22px;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 200;
+}
+
+.mobile-brand {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger-icon {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--charcoal);
+  position: relative;
+  transition: background 0.2s;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 1.5px;
+  background: var(--charcoal);
+  left: 0;
+  transition: transform 0.2s, top 0.2s;
+}
+
+.hamburger-icon::before { top: -6px; }
+.hamburger-icon::after  { top:  6px; }
+
+.hamburger-icon--open {
+  background: transparent;
+}
+
+.hamburger-icon--open::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.hamburger-icon--open::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.mobile-dropdown {
+  position: absolute;
+  top: 58px;
+  left: 0;
+  right: 0;
+  background: var(--cream);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-link {
+  background: none;
+  border: none;
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--charcoal);
+  padding: 14px 22px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-soft);
+  transition: background 0.15s;
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link--active {
+  background: var(--sage-pale);
+  color: var(--charcoal);
+}
+
+
+/* ================================================================
+   Decorative background elements
+   ================================================================ */
+
+.deco {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.deco-circle {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.deco-c1 {
+  width: 180px;
+  height: 180px;
+  background: var(--sage-pale);
+  opacity: 0.55;
+  top: 8%;
+  right: 7%;
+}
+
+.deco-c2 {
+  width: 80px;
+  height: 80px;
+  background: var(--wheat-pale);
+  opacity: 0.7;
+  top: 38%;
+  right: 18%;
+}
+
+.deco-c3 {
+  width: 120px;
+  height: 120px;
+  background: var(--mist-light);
+  opacity: 0.5;
+  bottom: 28%;
+  right: 6%;
+}
+
+.deco-c4 {
+  width: 220px;
+  height: 220px;
+  background: var(--wheat-pale);
+  opacity: 0.3;
+  bottom: 6%;
+  right: 2%;
+}
+
+/* Tiny dot grid pattern */
+.deco-dot-grid {
+  position: absolute;
+  top: 15%;
+  right: 4%;
+  width: 120px;
+  height: 120px;
+  background-image: radial-gradient(circle, var(--sage-light) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  opacity: 0.45;
+}
+
+
+/* ================================================================
+   Shared section styles
+   ================================================================ */
+
+.section {
+  padding: 84px 0 72px;
+  position: relative;
+  z-index: 1;
+}
+
+.section + .section {
+  border-top: 1px solid var(--border-soft);
+}
+
+.section-header {
+  margin-bottom: 52px;
+}
+
+.part-tag {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage);
+  background: var(--sage-pale);
+  padding: 4px 13px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 36px;
+  letter-spacing: -0.025em;
+  color: var(--charcoal);
+  margin: 6px 0 12px;
+  line-height: 1.15;
+}
+
+.section-lead {
+  font-family: var(--font-ui);
+  font-size: 15px;
+  color: var(--charcoal-soft);
+  line-height: 1.65;
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--sage);
+  margin-bottom: 14px;
+}
+
+
+/* ================================================================
+   Section 1 — Home
+   ================================================================ */
+
+.section--home {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 80px;
+}
+
+.home-inner {
+  max-width: 620px;
+}
+
+.site-title {
+  font-size: 58px;
+  letter-spacing: -0.03em;
+  line-height: 1.08;
+  color: var(--charcoal);
+  margin: 6px 0 14px;
+}
+
+.site-subtitle {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  color: var(--charcoal-soft);
+  letter-spacing: 0.05em;
+  margin-bottom: 30px;
+}
+
+.home-intro {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--charcoal-mid);
+  margin-bottom: 44px;
+}
+
+/* ── Sticky-note intention card ── */
+.intention-card {
+  position: relative;
+  background: var(--wheat-pale);
+  border: 1px solid rgba(232, 201, 112, 0.45);
+  border-radius: var(--radius);
+  padding: 30px 34px 26px;
+  margin-bottom: 44px;
+  max-width: 500px;
+  box-shadow: var(--shadow-sm), 2px 3px 0 rgba(232, 201, 112, 0.25);
+}
+
+.intention-tape {
+  position: absolute;
+  top: -8px;
+  left: 36px;
+  width: 52px;
+  height: 14px;
+  background: rgba(232, 201, 112, 0.55);
+  border-radius: 3px;
+}
+
+.intention-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.intention-glyph {
+  color: var(--wheat);
+  font-size: 14px;
+}
+
+.intention-label {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8B6B10;
+}
+
+.intention-quote {
+  font-size: 18px;
+  font-style: italic;
+  color: var(--charcoal);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.intention-note {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: #8B6B10;
+  opacity: 0.75;
+}
+
+.cta-btn {
+  background: transparent;
+  border: 1.5px solid var(--sage);
+  color: var(--sage);
+  font-family: var(--font-ui);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  padding: 11px 28px;
+  border-radius: 30px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cta-btn:hover {
+  background: var(--sage);
+  color: #fff;
+}
+
+
+/* ================================================================
+   Section 2 — Baseline Map / Assessment Cards
+   ================================================================ */
+
+.assessment-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.acard {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 40px 44px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.acard:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.acard-tag {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 13px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.acard-tag--scarf {
+  background: var(--mist-pale);
+  color: #2D7A86;
+  border: 1px solid rgba(191, 215, 217, 0.5);
+}
+
+.acard-tag--via {
+  background: var(--sage-pale);
+  color: #3A6E56;
+  border: 1px solid rgba(143, 175, 156, 0.4);
+}
+
+.acard-tag--super {
+  background: var(--wheat-pale);
+  color: #7A5B0E;
+  border: 1px solid rgba(232, 201, 112, 0.4);
+}
+
+.acard-title {
+  font-size: 22px;
+  color: var(--charcoal);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.acard-body {
+  font-size: 15px;
+  line-height: 1.82;
+  color: var(--charcoal-mid);
+  margin-bottom: 28px;
+}
+
+/* ── Chips ── */
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.chip {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.chip--score {
+  background: var(--mist-pale);
+  color: #2D7A86;
+  border: 1px solid rgba(191, 215, 217, 0.55);
+}
+
+.chip--score em {
+  font-style: normal;
+  font-weight: 700;
+  color: #1E6070;
+}
+
+.chip--strength {
+  background: var(--sage-pale);
+  color: #3A6E56;
+  border: 1px solid rgba(143, 175, 156, 0.4);
+}
+
+/* ── Superpower display ── */
+.superpower-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.superpower-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 18px 24px;
+  border-radius: 14px;
+  flex: 1;
+  min-width: 160px;
+}
+
+.superpower-cell--main {
+  background: var(--wheat-pale);
+  border: 1px solid rgba(232, 201, 112, 0.45);
+}
+
+.superpower-cell--also {
+  background: var(--sage-pale);
+  border: 1px solid rgba(143, 175, 156, 0.35);
+}
+
+.superpower-sublabel {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--charcoal-soft);
+}
+
+.superpower-name {
+  font-size: 20px;
+  font-style: italic;
+  color: var(--charcoal);
+}
+
+.superpower-name--secondary {
+  font-size: 17px;
+  color: var(--charcoal-mid);
+}
+
+/* ── Mini reflection block ── */
+.mini-reflection {
+  display: flex;
+  gap: 0;
+  background: rgba(247, 243, 234, 0.75);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  overflow: hidden;
+}
+
+.mini-reflection-bar {
+  display: block;
+  width: 3px;
+  flex-shrink: 0;
+  background: var(--sage);
+  border-radius: 3px 0 0 3px;
+  margin-right: 18px;
+}
+
+.mini-reflection p {
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--charcoal-mid);
+  font-style: italic;
+  padding: 14px 18px 14px 0;
+}
+
+
+/* ================================================================
+   Section 3 — Baseline Reflection
+   ================================================================ */
+
+.reflection-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 52px 56px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.reflection-card p {
+  font-size: 16px;
+  line-height: 1.88;
+  color: var(--charcoal-mid);
+}
+
+.reflection-card p:first-child {
+  font-size: 17px;
+  color: var(--charcoal);
+}
+
+
+/* ================================================================
+   Section 4 — Weekly Diary / Timeline
+   ================================================================ */
+
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Vertical connecting line */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 23px;
+  top: 52px;
+  bottom: 24px;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--sage-light), var(--border-soft) 80%, transparent);
+}
+
+.tl-item {
+  display: flex;
+  gap: 28px;
+  padding-bottom: 28px;
+}
+
+.tl-marker {
+  flex-shrink: 0;
+  width: 48px;
+  padding-top: 22px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.week-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--sage);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(143, 175, 156, 0.4);
+}
+
+.week-badge--future {
+  background: #fff;
+  color: var(--charcoal-soft);
+  border: 1.5px solid var(--border);
+  box-shadow: var(--shadow-sm);
+}
+
+.diary-card {
+  flex: 1;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 36px 40px;
+  box-shadow: var(--shadow-sm);
+}
+
+.diary-card--active {
+  border-color: rgba(143, 175, 156, 0.45);
+  transition: box-shadow 0.25s ease;
+}
+
+.diary-card--active:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+.diary-card--placeholder {
+  background: rgba(247, 243, 234, 0.45);
+  padding: 26px 40px;
+  border-style: dashed;
+}
+
+.diary-card-title {
+  font-size: 20px;
+  color: var(--charcoal);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+
+.diary-card-title--placeholder {
+  font-size: 17px;
+  color: var(--charcoal-soft);
+  margin-bottom: 8px;
+  font-style: italic;
+}
+
+.diary-block {
+  margin-bottom: 28px;
+}
+
+.diary-block:last-child {
+  margin-bottom: 0;
+}
+
+.diary-block p {
+  font-size: 15px;
+  line-height: 1.82;
+  color: var(--charcoal-mid);
+  margin-top: 10px;
+}
+
+.diary-block p + p {
+  margin-top: 12px;
+}
+
+/* Diary section tags */
+.diary-tag {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  padding: 4px 13px;
+  border-radius: 20px;
+}
+
+.diary-tag--insight {
+  background: var(--mist-pale);
+  color: #2D7A86;
+  border: 1px solid rgba(191, 215, 217, 0.5);
+}
+
+.diary-tag--goal {
+  background: var(--sage-pale);
+  color: #3A6E56;
+  border: 1px solid rgba(143, 175, 156, 0.4);
+}
+
+.diary-tag--differently {
+  background: var(--wheat-pale);
+  color: #7A5B0E;
+  border: 1px solid rgba(232, 201, 112, 0.45);
+}
+
+.placeholder-text {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  color: var(--charcoal-soft);
+  opacity: 0.6;
+  font-style: italic;
+}
+
+
+/* ================================================================
+   Section 5 — Growth Pattern
+   ================================================================ */
+
+.section--growth {
+  padding-bottom: 100px;
+}
+
+.growth-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 64px;
+}
+
+.growth-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 34px 28px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.growth-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-4px);
+}
+
+.growth-num {
+  font-family: var(--font-ui);
+  font-size: 30px;
+  font-weight: 200;
+  color: var(--sage);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.growth-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--charcoal);
+}
+
+.site-footer {
+  font-family: var(--font-ui);
+  font-size: 12px;
+  color: var(--charcoal-soft);
+  opacity: 0.45;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding-top: 44px;
+  border-top: 1px solid var(--border-soft);
+}
+
+
+/* ================================================================
+   Responsive — tablet (≤1100px)
+   ================================================================ */
+
+@media (max-width: 1100px) {
+  .main {
+    max-width: 100%;
+    padding: 0 52px 0 52px;
+  }
+}
+
+
+/* ================================================================
+   Responsive — mobile (≤860px)
+   ================================================================ */
+
+@media (max-width: 860px) {
+  .sidebar {
+    display: none;
+  }
+
+  .deco {
+    display: none;
+  }
+
+  .mobile-header {
+    display: flex;
+  }
+
+  .main {
+    margin-left: 0;
+    padding: 0 22px 0 22px;
+  }
+
+  .section--home {
+    min-height: auto;
+    padding-top: 90px;
+    padding-bottom: 64px;
+    align-items: flex-start;
+  }
+
+  .site-title {
+    font-size: 40px;
+  }
+
+  .section-title {
+    font-size: 28px;
+  }
+
+  .section {
+    padding: 60px 0 52px;
+  }
+
+  .acard {
+    padding: 28px 26px;
+  }
+
+  .reflection-card {
+    padding: 32px 28px;
+  }
+
+  .diary-card {
+    padding: 26px 24px;
+  }
+
+  .growth-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .superpower-row {
+    flex-direction: column;
+  }
+
+  .superpower-cell {
+    min-width: unset;
+  }
+}
+
+
+/* ================================================================
+   Responsive — small mobile (≤480px)
+   ================================================================ */
+
+@media (max-width: 480px) {
+  .site-title {
+    font-size: 32px;
+  }
+
+  .section-title {
+    font-size: 24px;
+  }
+
+  .acard {
+    padding: 22px 18px;
+  }
+
+  .reflection-card {
+    padding: 24px 20px;
+  }
+
+  .intention-card {
+    padding: 24px 22px 20px;
+  }
+
+  .tl-item {
+    gap: 18px;
+  }
+
+  .diary-card {
+    padding: 22px 18px;
+  }
+}
