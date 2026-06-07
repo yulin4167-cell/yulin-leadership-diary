@@ -2,8 +2,6 @@ import { useState, useEffect } from 'react'
 import './App.css'
 
 // ── Constants ────────────────────────────────────────────────────────────────
-const PASSCODE   = 'gentle'
-const SESSION_KEY = 'ggl_unlocked'
 const STORAGE_KEY = 'ggl_entries'
 
 const NAV_ITEMS = [
@@ -254,57 +252,6 @@ function MomentumIllustration() {
   )
 }
 
-// ── Passcode Gate ─────────────────────────────────────────────────────────────
-function PasscodeGate({ onUnlock }) {
-  const [input, setInput] = useState('')
-  const [error, setError] = useState(false)
-  const [shake, setShake] = useState(false)
-
-  const submit = (e) => {
-    e.preventDefault()
-    if (input.toLowerCase().trim() === PASSCODE) {
-      sessionStorage.setItem(SESSION_KEY, '1')
-      onUnlock()
-    } else {
-      setError(true)
-      setShake(true)
-      setInput('')
-      setTimeout(() => setShake(false), 600)
-    }
-  }
-
-  return (
-    <div className="gate">
-      <div className="gate-deco" aria-hidden="true">
-        <span className="gate-blob gb1" />
-        <span className="gate-blob gb2" />
-        <span className="gate-blob gb3" />
-        <span className="gate-dots" />
-      </div>
-      <div className={`gate-card${shake ? ' gate-card--shake' : ''}`}>
-        <div className="gate-glyph" aria-hidden="true">✦</div>
-        <h1 className="gate-title">The Gentle Growth Log</h1>
-        <p className="gate-sub">A leadership diary by Yulin Li</p>
-        <p className="gate-hint">This is a private diary. Enter the passcode to open it.</p>
-        <form onSubmit={submit} className="gate-form">
-          <input
-            className={`gate-input${error ? ' gate-input--err' : ''}`}
-            type="password"
-            placeholder="passcode"
-            value={input}
-            autoFocus
-            autoComplete="off"
-            onChange={(e) => { setInput(e.target.value); setError(false) }}
-          />
-          <button className="gate-btn" type="submit">Open Diary →</button>
-        </form>
-        {error && <p className="gate-error">Try again — this diary opens gently.</p>}
-        <p className="gate-whisper">hint: think of the site's title, lowercase, one word</p>
-      </div>
-    </div>
-  )
-}
-
 // ── Expandable Assessment Card ────────────────────────────────────────────────
 function AssessmentCard({ tag, tagClass, cardType, title, summary, fullText, chips, reflection, illustration }) {
   const [open, setOpen] = useState(false)
@@ -474,7 +421,6 @@ function IntroScreen({ onEnter }) {
 function App() {
   const [showIntro,      setShowIntro]      = useState(true)
   const [entering,       setEntering]       = useState(false)
-  const [unlocked,       setUnlocked]       = useState(() => sessionStorage.getItem(SESSION_KEY) === '1')
   const [activeSection,  setActiveSection]  = useState('home')
   const [mobileNavOpen,  setMobileNavOpen]  = useState(false)
   const [reflectionOpen, setReflectionOpen] = useState(false)
@@ -524,7 +470,6 @@ function App() {
   }
 
   if (showIntro) return <IntroScreen onEnter={handleIntroComplete} />
-  if (!unlocked) return <PasscodeGate onUnlock={() => setUnlocked(true)} />
 
   return (
     <div className={`app${entering ? ' app--entering' : ''}`}>
