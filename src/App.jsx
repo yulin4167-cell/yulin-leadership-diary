@@ -4,6 +4,17 @@ import './App.css'
 // ── Constants ────────────────────────────────────────────────────────────────
 const STORAGE_KEY = 'ggl_entries'
 
+const TAG_STYLE_MAP = {
+  'SCARF':             'dtag--scarf',
+  'VIA':               'dtag--via',
+  'Superpower':        'dtag--super',
+  'Self-awareness':    'dtag--self',
+  'Culture Decoder':   'dtag--culture',
+  'Systems Thinking':  'dtag--systems',
+  'Design Leadership': 'dtag--design',
+  'Group Work':        'dtag--group',
+}
+
 const NAV_ITEMS = [
   { id: 'home',         label: 'Home' },
   { id: 'baseline',     label: 'Baseline' },
@@ -43,13 +54,27 @@ const VIA_STRENGTHS = ['Spirituality', 'Gratitude', 'Prudence', 'Honesty', 'Fair
 
 const weeklyEntries = [
 
-  // ── WEEK 1 ───────────────────────────────────────────────────────────────────
+  // ── WEEK 1 — SKIPPED ─────────────────────────────────────────────────────────
   {
-    week:         1,
-    title:        'Starting from Self-awareness',
-    date:         'Week 1',
-    // Change to 'done' when Week 2 is ready
-    status:       'active',
+    week:          1,
+    title:         'Week 1 — Skipped',
+    date:          'Week 1',
+    status:        'skipped',
+    tags:          [],
+    insight:       [],
+    goal:          [],
+    action:        [],
+    mood:          '',
+    visualKeyword: '',
+  },
+
+  // ── WEEK 2 ───────────────────────────────────────────────────────────────────
+  {
+    week:          2,
+    title:         'Starting from Self-awareness',
+    date:          'Week 2',
+    status:        'done',
+    tags:          ['SCARF', 'VIA', 'Superpower', 'Self-awareness'],
     insight: [
       `This week, I realized that leadership does not always have to look loud or dominant. I used to think leadership meant being the person who speaks first, gives direction quickly, or has the most confidence in the room. But after looking at my SCARF, VIA, and Superpower results together, I started to see that my leadership may be quieter and more structured.`,
       `I lead more naturally by noticing what is unclear, helping people feel supported, and creating a sense of direction. I also learned that my need for certainty and autonomy can be both a strength and a challenge. It helps me organize ideas and move things forward, but it can also make me uncomfortable when the situation is vague or changing.`,
@@ -60,60 +85,76 @@ const weeklyEntries = [
     action: [
       `In the next class or group discussion, I will share one thought or question before I feel completely ready. I will try not to wait until my idea feels perfect. If something is unclear, I will ask a clarifying question instead of quietly trying to figure everything out by myself.`,
     ],
-    mood:         'reflective',
+    mood:          'reflective',
     visualKeyword: 'clarity',
   },
 
-  // ── WEEK 2 — paste your content here ─────────────────────────────────────────
-  // When ready: change status → 'active', update title, fill insight/goal/action.
+  // ── WEEK 3 ───────────────────────────────────────────────────────────────────
   {
-    week:         2,
-    title:        'Coming soon',
-    date:         'Week 2',
-    status:       'placeholder',
-    insight:      [],
-    goal:         [],
-    action:       [],
-    mood:         '',
+    week:          3,
+    title:         'Reading Culture as a System',
+    date:          'Week 3',
+    status:        'active',
+    theme:         'Leading from the Whole / Organizational Culture & Systems Thinking',
+    tags:          ['Culture Decoder', 'Systems Thinking', 'Design Leadership', 'Group Work'],
+    groupNote:     'LbD GROUP 2 WORK — Rae, Ayushi, Yulin, Karen',
+    appNote:       'Our group built a Culture Decoder App as an interactive culture profile. The assignment asked us to read organizational culture not only by what a company says it values, but by what it actually rewards, tolerates, and punishes.',
+    insight: [
+      `This week, I learned that organizational culture is not only something written on a company values page. It shows up in repeated behaviors, decision-making patterns, hiring language, employee reviews, and what people feel they need to do in order to succeed. The Culture Decoder App helped me understand culture as a system instead of a surface-level brand story.`,
+      `Using Schein's three levels of culture made me slow down and separate visible artifacts, stated values, and deeper tacit assumptions. The Goffee & Jones sociability vs. solidarity grid also helped me see that a company can be warm but not aligned, or highly aligned but emotionally intense. Design maturity became another important lens because it shows whether design is only used for execution or actually has influence in strategy and decision-making.`,
+    ],
+    goal: [
+      `My goal after this week is to become better at reading organizational signals before making quick judgments. Instead of only asking whether a company looks successful or attractive from the outside, I want to ask what kind of behavior the organization rewards, what it quietly tolerates, and whether design has real influence in the system.`,
+    ],
+    action: [
+      `When I evaluate a company, a team, or a future job opportunity, I will look for at least three types of evidence before forming an opinion: what the company says, what employees or job postings reveal, and how design appears to function inside the organization. In group work, I also want to contribute by connecting evidence back to the framework, instead of just collecting information.`,
+    ],
+    reflection: [
+      `Working with Rae, Ayushi, and Karen made this assignment feel more real because culture was not something we could decode from one source. We had to compare signals, discuss what each clue might mean, and decide how to present the analysis in a way that viewers could actually explore. Personally, I noticed that I still like having a clear structure, but culture work is not always clean or certain. Sometimes the useful insight comes from staying with the messy middle for a little longer. This connected back to my own leadership diary because I am learning that leading is not only about solving quickly. It is also about helping a group make sense of complexity together.`,
+    ],
+    mood:          'curious',
+    visualKeyword: 'systems',
+  },
+
+  // ── WEEK 4 ───────────────────────────────────────────────────────────────────
+  {
+    week:          4,
+    title:         'Coming Soon',
+    date:          'Week 4',
+    status:        'placeholder',
+    tags:          [],
+    insight:       [],
+    goal:          [],
+    action:        [],
+    mood:          '',
     visualKeyword: '',
   },
 
-  // ── WEEK 3 — paste your content here ─────────────────────────────────────────
+  // ── WEEK 5 ───────────────────────────────────────────────────────────────────
   {
-    week:         3,
-    title:        'Coming soon',
-    date:         'Week 3',
-    status:       'placeholder',
-    insight:      [],
-    goal:         [],
-    action:       [],
-    mood:         '',
+    week:          5,
+    title:         'Coming Soon',
+    date:          'Week 5',
+    status:        'placeholder',
+    tags:          [],
+    insight:       [],
+    goal:          [],
+    action:        [],
+    mood:          '',
     visualKeyword: '',
   },
 
-  // ── WEEK 4 — paste your content here ─────────────────────────────────────────
+  // ── WEEK 6 ───────────────────────────────────────────────────────────────────
   {
-    week:         4,
-    title:        'Coming soon',
-    date:         'Week 4',
-    status:       'placeholder',
-    insight:      [],
-    goal:         [],
-    action:       [],
-    mood:         '',
-    visualKeyword: '',
-  },
-
-  // ── WEEK 5 — paste your content here ─────────────────────────────────────────
-  {
-    week:         5,
-    title:        'Coming soon',
-    date:         'Week 5',
-    status:       'placeholder',
-    insight:      [],
-    goal:         [],
-    action:       [],
-    mood:         '',
+    week:          6,
+    title:         'Coming Soon',
+    date:          'Week 6',
+    status:        'placeholder',
+    tags:          [],
+    insight:       [],
+    goal:          [],
+    action:        [],
+    mood:          '',
     visualKeyword: '',
   },
 
@@ -184,6 +225,359 @@ function SparkBurstIll() {
       })}
       <circle cx="32" cy="32" r="9"   fill="#E8C970" opacity="0.22" />
       <circle cx="32" cy="32" r="4.5" fill="#E8C970" opacity="0.88" />
+    </svg>
+  )
+}
+
+// ── System-map illustration (diary card corner, Week 3) ──────────────────────
+function SystemMapIll() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" className="diary-card-deco-svg" aria-hidden="true">
+      {/* Center hub */}
+      <circle cx="32" cy="32" r="6.5" fill="#8FAF9C" opacity="0.85" />
+      <circle cx="32" cy="32" r="11" stroke="#8FAF9C" strokeWidth="1" opacity="0.28" strokeDasharray="2 4" />
+      {/* Outer nodes */}
+      <circle cx="12" cy="12" r="4" fill="#BFD7D9" opacity="0.72" />
+      <circle cx="52" cy="12" r="4" fill="#BFD7D9" opacity="0.72" />
+      <circle cx="12" cy="52" r="4" fill="#BFD7D9" opacity="0.72" />
+      <circle cx="52" cy="52" r="4" fill="#BFD7D9" opacity="0.72" />
+      <circle cx="32" cy="7"  r="3"   fill="#E8C970" opacity="0.68" />
+      <circle cx="57" cy="32" r="3"   fill="#E8C970" opacity="0.68" />
+      {/* Spoke lines to corners */}
+      <line x1="32" y1="32" x2="12" y2="12" stroke="#8FAF9C" strokeWidth="1.5" opacity="0.45" />
+      <line x1="32" y1="32" x2="52" y2="12" stroke="#8FAF9C" strokeWidth="1.5" opacity="0.45" />
+      <line x1="32" y1="32" x2="12" y2="52" stroke="#8FAF9C" strokeWidth="1.5" opacity="0.45" />
+      <line x1="32" y1="32" x2="52" y2="52" stroke="#8FAF9C" strokeWidth="1.5" opacity="0.45" />
+      {/* Spoke lines to wheat nodes */}
+      <line x1="32" y1="32" x2="32" y2="7"  stroke="#E8C970" strokeWidth="1" opacity="0.5" strokeDasharray="2 3" />
+      <line x1="32" y1="32" x2="57" y2="32" stroke="#E8C970" strokeWidth="1" opacity="0.5" strokeDasharray="2 3" />
+      {/* Perimeter arcs between corner nodes */}
+      <line x1="12" y1="12" x2="52" y2="12" stroke="#BFD7D9" strokeWidth="1" opacity="0.3" strokeDasharray="3 5" />
+      <line x1="12" y1="12" x2="12" y2="52" stroke="#BFD7D9" strokeWidth="1" opacity="0.3" strokeDasharray="3 5" />
+      <line x1="52" y1="52" x2="12" y2="52" stroke="#BFD7D9" strokeWidth="1" opacity="0.3" strokeDasharray="3 5" />
+      <line x1="52" y1="52" x2="52" y2="12" stroke="#BFD7D9" strokeWidth="1" opacity="0.3" strokeDasharray="3 5" />
+    </svg>
+  )
+}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   New sticker system — Premium diary decoration layer
+   16 unique illustrated elements, each tied to a leadership-diary theme.
+   Floating sticker animations driven by CSS classes (float / pulse / rotate).
+   All stickers: aria-hidden, pointer-events none, hidden below 860 px.
+───────────────────────────────────────────────────────────────────────────── */
+
+function Sticker({ style, className = '', children }) {
+  return (
+    <div className={`sticker${className ? ' ' + className : ''}`} style={style} aria-hidden="true">
+      {children}
+    </div>
+  )
+}
+
+/* ── 1. Clarity Compass ── direction-finding, clarity in uncertainty */
+function StickerCompass() {
+  return (
+    <svg className="sticker-compass" width="54" height="54" viewBox="0 0 54 54" fill="none">
+      <circle cx="27" cy="27" r="23" stroke="#7E9E8A" strokeWidth="1.6" opacity="0.62" />
+      <circle cx="27" cy="27" r="17" stroke="#7E9E8A" strokeWidth="0.9" opacity="0.25" strokeDasharray="2.5 5" />
+      <line x1="27" y1="4"  x2="27" y2="11" stroke="#7E9E8A" strokeWidth="2.4" strokeLinecap="round" />
+      <line x1="27" y1="43" x2="27" y2="50" stroke="#7E9E8A" strokeWidth="1.4" strokeLinecap="round" opacity="0.38" />
+      <line x1="4"  y1="27" x2="11" y2="27" stroke="#7E9E8A" strokeWidth="1.4" strokeLinecap="round" opacity="0.38" />
+      <line x1="43" y1="27" x2="50" y2="27" stroke="#7E9E8A" strokeWidth="1.4" strokeLinecap="round" opacity="0.38" />
+      {/* N needle — bold sage */}
+      <path d="M27 7 L30 22 L27 25.5 L24 22 Z" fill="#7E9E8A" />
+      {/* S needle — muted */}
+      <path d="M27 47 L30 32 L27 28.5 L24 32 Z" fill="#7E9E8A" opacity="0.26" />
+      <circle cx="27" cy="27" r="3.8" fill="#7E9E8A" />
+      <circle cx="27" cy="27" r="2"   fill="rgba(244,239,230,0.88)" />
+    </svg>
+  )
+}
+
+/* ── 2. Growth Sprout ── weekly leadership growth, gentle progress */
+function StickerGrowthSprout() {
+  return (
+    <svg className="sticker-sprout" width="40" height="60" viewBox="0 0 40 60" fill="none">
+      <ellipse cx="20" cy="55" rx="11" ry="4" fill="#C6A444" opacity="0.2" />
+      <path d="M20 54 C20 43 20 32 20 20" stroke="#7E9E8A" strokeWidth="2.4" strokeLinecap="round" />
+      {/* Left leaf */}
+      <path d="M20 40 C13 36 6 28 9 19C12.5 19.5 20 30 20 40Z" fill="#7E9E8A" opacity="0.7" />
+      {/* Right leaf */}
+      <path d="M20 31 C27 27 34 19 31 10C27.5 10.5 20 22 20 31Z" fill="#7E9E8A" opacity="0.88" />
+      {/* Bud */}
+      <ellipse cx="20" cy="16" rx="6" ry="9" fill="#7E9E8A" opacity="0.82" />
+      <ellipse cx="17" cy="14" rx="2.8" ry="5" fill="rgba(255,255,255,0.22)" transform="rotate(-12 17 14)" />
+    </svg>
+  )
+}
+
+/* ── 3. Listening Cloud ── listening, reflection, openness */
+function StickerListeningCloud() {
+  return (
+    <svg className="sticker-cloud" width="68" height="48" viewBox="0 0 68 48" fill="none">
+      <ellipse cx="19" cy="33" rx="15" ry="12" fill="#A4BAB8" opacity="0.7" />
+      <ellipse cx="34" cy="26" rx="19" ry="16" fill="#A4BAB8" opacity="0.7" />
+      <ellipse cx="51" cy="33" rx="14" ry="12" fill="#A4BAB8" opacity="0.7" />
+      <rect x="4" y="33" width="60" height="12" rx="2" fill="#A4BAB8" opacity="0.7" />
+      {/* Inner listening dots */}
+      <circle cx="22" cy="33" r="2.8" fill="rgba(244,239,230,0.65)" />
+      <circle cx="32" cy="30" r="2.8" fill="rgba(244,239,230,0.65)" />
+      <circle cx="42" cy="33" r="2.8" fill="rgba(244,239,230,0.65)" />
+      {/* Sound waves right */}
+      <path d="M62 26 Q69 32 62 38" stroke="#A4BAB8" strokeWidth="1.8" strokeLinecap="round" fill="none" opacity="0.52" />
+      <path d="M60 21 Q70 32 60 43" stroke="#A4BAB8" strokeWidth="1.4" strokeLinecap="round" fill="none" opacity="0.28" />
+    </svg>
+  )
+}
+
+/* ── 4. Culture Signal ── reading organizational signals, radar */
+function StickerCultureSignal() {
+  return (
+    <svg className="sticker-culture-signal" width="56" height="50" viewBox="0 0 56 50" fill="none">
+      <path d="M4 46 Q28 6 52 46"  stroke="#A4BAB8" strokeWidth="1.8" strokeLinecap="round" fill="none" opacity="0.28" />
+      <path d="M11 46 Q28 16 45 46" stroke="#A4BAB8" strokeWidth="2"   strokeLinecap="round" fill="none" opacity="0.48" />
+      <path d="M18 46 Q28 26 38 46" stroke="#A4BAB8" strokeWidth="2.2" strokeLinecap="round" fill="none" opacity="0.72" />
+      <circle cx="28" cy="46" r="5"   fill="#A4BAB8" opacity="0.9" />
+      <circle cx="28" cy="46" r="2.4" fill="rgba(244,239,230,0.88)" />
+      <circle cx="4"  cy="46" r="2.2" fill="#A4BAB8" opacity="0.35" />
+      <circle cx="52" cy="46" r="2.2" fill="#A4BAB8" opacity="0.35" />
+    </svg>
+  )
+}
+
+/* ── 5. Systems Map ── systems thinking, interconnected nodes */
+function StickerSystemsMap() {
+  return (
+    <svg className="sticker-system-map" width="58" height="58" viewBox="0 0 58 58" fill="none">
+      {/* Center hub */}
+      <circle cx="29" cy="29" r="8"   fill="#7E9E8A" opacity="0.82" />
+      <circle cx="29" cy="29" r="3.8" fill="rgba(244,239,230,0.88)" />
+      {/* Corner nodes */}
+      <circle cx="9"  cy="9"  r="5.5" fill="#A4BAB8" opacity="0.72" />
+      <circle cx="49" cy="9"  r="5.5" fill="#A4BAB8" opacity="0.72" />
+      <circle cx="9"  cy="49" r="5.5" fill="#BF9E80" opacity="0.62" />
+      <circle cx="49" cy="49" r="5.5" fill="#BF9E80" opacity="0.62" />
+      {/* Accent nodes */}
+      <circle cx="29" cy="4"  r="4"   fill="#C6A444" opacity="0.65" />
+      <circle cx="54" cy="29" r="4"   fill="#C6A444" opacity="0.65" />
+      {/* Spoke lines */}
+      <line x1="29" y1="29" x2="9"  y2="9"  stroke="#7E9E8A" strokeWidth="1.5" opacity="0.4" />
+      <line x1="29" y1="29" x2="49" y2="9"  stroke="#7E9E8A" strokeWidth="1.5" opacity="0.4" />
+      <line x1="29" y1="29" x2="9"  y2="49" stroke="#BF9E80" strokeWidth="1.5" opacity="0.4" />
+      <line x1="29" y1="29" x2="49" y2="49" stroke="#BF9E80" strokeWidth="1.5" opacity="0.4" />
+      <line x1="29" y1="29" x2="29" y2="4"  stroke="#C6A444" strokeWidth="1" opacity="0.42" strokeDasharray="2 3" />
+      <line x1="29" y1="29" x2="54" y2="29" stroke="#C6A444" strokeWidth="1" opacity="0.42" strokeDasharray="2 3" />
+      {/* Perimeter */}
+      <line x1="9"  y1="9"  x2="49" y2="9"  stroke="#A4BAB8" strokeWidth="0.8" opacity="0.25" strokeDasharray="3 6" />
+      <line x1="9"  y1="9"  x2="9"  y2="49" stroke="#A4BAB8" strokeWidth="0.8" opacity="0.25" strokeDasharray="3 6" />
+      <line x1="49" y1="49" x2="9"  y2="49" stroke="#A4BAB8" strokeWidth="0.8" opacity="0.25" strokeDasharray="3 6" />
+      <line x1="49" y1="49" x2="49" y2="9"  stroke="#A4BAB8" strokeWidth="0.8" opacity="0.25" strokeDasharray="3 6" />
+    </svg>
+  )
+}
+
+/* ── 6. Reflection Moon ── quiet reflection, introspection */
+function StickerMoon() {
+  return (
+    <svg className="sticker-moon" width="48" height="48" viewBox="0 0 48 48" fill="none">
+      <path
+        d="M37 26.5C36 33.5 30 38.5 23 38.5C15.3 38.5 9 32.2 9 24.5C9 17 14.8 10.8 22 10.2C19.2 13.2 18.4 17 19 20.5C20.2 27 25.8 31.5 32.5 29.8C34.5 29.2 36 27.8 37 26.5Z"
+        fill="#A4BAB8" opacity="0.88"
+      />
+      {/* Accent stars */}
+      <circle cx="41" cy="13" r="2.2" fill="#A4BAB8" opacity="0.55" />
+      <circle cx="39" cy="7"  r="1.4" fill="#A4BAB8" opacity="0.35" />
+      <circle cx="45" cy="20" r="1.2" fill="#C6A444" opacity="0.5" />
+      <circle cx="43" cy="8"  r="1.8" fill="#C6A444" opacity="0.4" />
+    </svg>
+  )
+}
+
+/* ── 7. Evidence Tag ── noting evidence, research tags */
+function StickerEvidenceTag() {
+  return (
+    <svg className="sticker-evidence-tag" width="52" height="34" viewBox="0 0 52 34" fill="none">
+      {/* String */}
+      <path d="M7 8 Q5 17 7 26" stroke="#BF9E80" strokeWidth="1.3" strokeLinecap="round" fill="none" opacity="0.52" />
+      {/* Tag body */}
+      <path d="M11 3 L47 3 Q51 3 51 7 L51 27 Q51 31 47 31 L11 31 Q7 31 7 27 L7 7 Q7 3 11 3 Z"
+        fill="#F0E8C2" stroke="#C6A444" strokeWidth="1.3" />
+      {/* Eyelet */}
+      <circle cx="10.5" cy="17" r="3.5" fill="rgba(198,164,68,0.22)" stroke="#C6A444" strokeWidth="1.2" />
+      {/* Text lines */}
+      <rect x="20" y="10" width="22" height="2.2" rx="1.1" fill="#BF9E80" opacity="0.55" />
+      <rect x="20" y="15" width="17" height="2"   rx="1"   fill="#BF9E80" opacity="0.38" />
+      <rect x="20" y="20" width="20" height="1.8" rx="0.9" fill="#BF9E80" opacity="0.28" />
+    </svg>
+  )
+}
+
+/* ── 8. Weekly Dot Trail ── diary check-in journey, progress path */
+function StickerDotTrail() {
+  const dots = [
+    { cx: 7,  cy: 15, r: 5,   op: 0.85 },
+    { cx: 22, cy: 9,  r: 4.2, op: 0.7  },
+    { cx: 37, cy: 15, r: 3.5, op: 0.55 },
+    { cx: 52, cy: 9,  r: 2.8, op: 0.42 },
+    { cx: 67, cy: 15, r: 2.2, op: 0.3  },
+  ]
+  return (
+    <svg className="sticker-dot-trail" width="76" height="24" viewBox="0 0 76 24" fill="none">
+      <path d="M7 15 Q14.5 5 22 9 Q29.5 13 37 15 Q44.5 17 52 9 Q59.5 3 67 15"
+        stroke="#7E9E8A" strokeWidth="1.3" fill="none" opacity="0.32" strokeDasharray="3 5" />
+      {dots.map((d, i) => (
+        <g key={i}>
+          <circle cx={d.cx} cy={d.cy} r={d.r + 3.5} fill="#7E9E8A" opacity={d.op * 0.13} />
+          <circle cx={d.cx} cy={d.cy} r={d.r}       fill="#7E9E8A" opacity={d.op} />
+          <circle cx={d.cx} cy={d.cy} r={d.r * 0.45} fill="rgba(244,239,230,0.75)" />
+        </g>
+      ))}
+    </svg>
+  )
+}
+
+/* ── 9. Gentle Spark ── insight moments, illumination */
+function StickerGentleSpark() {
+  return (
+    <svg className="sticker-spark" width="56" height="56" viewBox="0 0 56 56" fill="none">
+      <circle cx="28" cy="28" r="24" fill="#C6A444" opacity="0.07" />
+      <circle cx="28" cy="28" r="16" fill="#C6A444" opacity="0.05" />
+      {/* 4-point star */}
+      <path d="M28 4L32 22.5L50 28L32 33.5L28 52L24 33.5L6 28L24 22.5Z" fill="#C6A444" opacity="0.85" />
+      <circle cx="28" cy="28" r="5.5" fill="rgba(244,239,230,0.62)" />
+      {/* Accent dots at tips */}
+      <circle cx="28" cy="10" r="1.8" fill="#C6A444" opacity="0.4" />
+      <circle cx="46" cy="28" r="1.8" fill="#C6A444" opacity="0.4" />
+      <circle cx="28" cy="46" r="1.8" fill="#C6A444" opacity="0.4" />
+      <circle cx="10" cy="28" r="1.8" fill="#C6A444" opacity="0.4" />
+    </svg>
+  )
+}
+
+/* ── 10. Question Mark Doodle ── curiosity, inquiry, open questions */
+function StickerQuestionMark() {
+  return (
+    <svg className="sticker-question" width="32" height="52" viewBox="0 0 32 52" fill="none">
+      <circle cx="16" cy="26" r="20" fill="#C6A444" opacity="0.055" />
+      <path d="M6 15 Q6 5 16 5 Q26 5 26 14 Q26 21 16 25.5 Q16 25.5 16 32"
+        stroke="#2A2F2C" strokeWidth="3.2" strokeLinecap="round" fill="none" opacity="0.65" />
+      <circle cx="16" cy="42" r="4" fill="#2A2F2C" opacity="0.65" />
+    </svg>
+  )
+}
+
+/* ── 11. Paper Tape ── holding things together, scrapbook accent */
+function StickerPaperTape({ w = 78, h = 20, color = 'rgba(198,164,68,0.42)' }) {
+  return (
+    <svg className="sticker-tape" width={w} height={h} viewBox={`0 0 ${w} ${h}`} fill="none">
+      <rect width={w} height={h} rx="3.5" fill={color} />
+      <line x1="0" y1={h * 0.32} x2={w} y2={h * 0.32} stroke="rgba(255,255,255,0.44)" strokeWidth="1.4" />
+      <line x1="0" y1={h * 0.68} x2={w} y2={h * 0.68} stroke="rgba(255,255,255,0.26)" strokeWidth="0.9" />
+      {/* Torn-edge hints */}
+      <path d={`M0 0 Q5 ${h / 2} 0 ${h}`}       fill="rgba(0,0,0,0.05)" />
+      <path d={`M${w} 0 Q${w - 5} ${h / 2} ${w} ${h}`} fill="rgba(0,0,0,0.05)" />
+    </svg>
+  )
+}
+
+/* ── 12. Mini Note ── diary pages, layered journal papers */
+function StickerMiniNote() {
+  return (
+    <svg className="sticker-mini-note" width="50" height="58" viewBox="0 0 50 58" fill="none">
+      {/* Shadow layer */}
+      <rect x="7" y="5" width="40" height="50" rx="3.5" fill="#EDE7DC" transform="rotate(5 7 5)" opacity="0.9" />
+      {/* Mid layer */}
+      <rect x="5" y="4" width="40" height="50" rx="3.5" fill="#F0E8C2" transform="rotate(-3.5 5 4)" opacity="0.9" />
+      {/* Front page */}
+      <rect x="2" y="2" width="40" height="50" rx="3.5" fill="#F4EFE6" stroke="#CEC9BE" strokeWidth="1.2" />
+      {/* Margin line */}
+      <line x1="11" y1="8" x2="11" y2="47" stroke="rgba(192,160,134,0.28)" strokeWidth="1" />
+      {/* Ruled lines */}
+      <line x1="14" y1="16" x2="35" y2="16" stroke="#CEC9BE" strokeWidth="1" opacity="0.65" />
+      <line x1="14" y1="22" x2="35" y2="22" stroke="#CEC9BE" strokeWidth="1" opacity="0.65" />
+      <line x1="14" y1="28" x2="35" y2="28" stroke="#CEC9BE" strokeWidth="1" opacity="0.65" />
+      <line x1="14" y1="34" x2="30" y2="34" stroke="#CEC9BE" strokeWidth="1" opacity="0.45" />
+      <line x1="14" y1="40" x2="28" y2="40" stroke="#CEC9BE" strokeWidth="1" opacity="0.35" />
+    </svg>
+  )
+}
+
+/* ── 13. Culture Grid ── 2×2 sociability/solidarity grid */
+function StickerCultureGrid() {
+  return (
+    <svg className="sticker-culture-grid" width="52" height="52" viewBox="0 0 52 52" fill="none">
+      <rect x="2" y="2" width="48" height="48" rx="7" stroke="#A4BAB8" strokeWidth="1.6"
+        fill="rgba(164,186,184,0.07)" />
+      <line x1="26" y1="2"  x2="26" y2="50" stroke="#A4BAB8" strokeWidth="1.3" opacity="0.52" />
+      <line x1="2"  y1="26" x2="50" y2="26" stroke="#A4BAB8" strokeWidth="1.3" opacity="0.52" />
+      {/* Quadrant tints */}
+      <rect x="3"  y="3"  width="22" height="22" rx="5" fill="#A4BAB8" opacity="0.2" />
+      <rect x="27" y="3"  width="22" height="22" rx="5" fill="#7E9E8A" opacity="0.26" />
+      <rect x="3"  y="27" width="22" height="22" rx="5" fill="#C6A444" opacity="0.18" />
+      <rect x="27" y="27" width="22" height="22" rx="5" fill="#BF9E80" opacity="0.22" />
+      <circle cx="26" cy="26" r="3.5" fill="#A4BAB8" opacity="0.75" />
+    </svg>
+  )
+}
+
+/* ── 14. Quiet Leadership Star ── soft leadership, quiet presence */
+function StickerLeadershipStar() {
+  return (
+    <svg className="sticker-leadership-star" width="54" height="54" viewBox="0 0 54 54" fill="none">
+      <circle cx="27" cy="27" r="24" fill="#C6A444" opacity="0.07" />
+      <circle cx="27" cy="27" r="18" fill="#C6A444" opacity="0.05" />
+      {/* 5-pointed star */}
+      <path d="M27 5L31.8 19.5L47.5 19.5L35.4 28.8L39.8 43.5L27 34.5L14.2 43.5L18.6 28.8L6.5 19.5L22.2 19.5Z"
+        fill="#C6A444" opacity="0.82" />
+      {/* Inner highlight */}
+      <path d="M27 5L30.2 14L38 14L32.5 20L34.8 29L27 24.5L19.2 29L21.5 20L16 14L23.8 14Z"
+        fill="rgba(255,255,255,0.17)" />
+      <circle cx="27" cy="27" r="3.8" fill="rgba(244,239,230,0.6)" />
+    </svg>
+  )
+}
+
+/* ── 15. Decision Path Arrow ── from ambiguity to action */
+function StickerDecisionArrow() {
+  return (
+    <svg className="sticker-decision-arrow" width="72" height="38" viewBox="0 0 72 38" fill="none">
+      {/* Dotted approach path */}
+      <path d="M5 30 C12 30 16 20 24 18 C32 16 38 16 46 16"
+        stroke="#7E9E8A" strokeWidth="1.6" strokeLinecap="round" fill="none"
+        strokeDasharray="3 5" opacity="0.5" />
+      {/* Solid arrow shaft */}
+      <line x1="46" y1="16" x2="64" y2="16" stroke="#7E9E8A" strokeWidth="2.6" strokeLinecap="round" opacity="0.88" />
+      {/* Arrowhead */}
+      <path d="M57 8 L66 16 L57 24" fill="none" stroke="#7E9E8A"
+        strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" opacity="0.88" />
+      {/* Start dot */}
+      <circle cx="5" cy="30" r="4.5" fill="#7E9E8A" opacity="0.52" />
+      <circle cx="5" cy="30" r="2.2" fill="rgba(244,239,230,0.88)" />
+    </svg>
+  )
+}
+
+/* ── 16. Group Work ── collaboration, team dynamics */
+function StickerGroupWork() {
+  return (
+    <svg className="sticker-group-work" width="66" height="44" viewBox="0 0 66 44" fill="none">
+      {/* Connection lines */}
+      <line x1="16" y1="20" x2="33" y2="13" stroke="#7E9E8A" strokeWidth="1.3" opacity="0.36" />
+      <line x1="33" y1="13" x2="50" y2="20" stroke="#7E9E8A" strokeWidth="1.3" opacity="0.36" />
+      <line x1="16" y1="20" x2="33" y2="30" stroke="#A4BAB8" strokeWidth="1"   opacity="0.28" />
+      <line x1="50" y1="20" x2="33" y2="30" stroke="#A4BAB8" strokeWidth="1"   opacity="0.28" />
+      <line x1="33" y1="13" x2="33" y2="30" stroke="#BF9E80" strokeWidth="0.8" opacity="0.22" strokeDasharray="2 3" />
+      {/* Person 1 — left */}
+      <circle cx="16" cy="14" r="6.5"  fill="#A4BAB8" opacity="0.72" />
+      <ellipse cx="16" cy="28" rx="8" ry="5.5" fill="#A4BAB8" opacity="0.48" />
+      {/* Person 2 — centre (slightly larger = leadership) */}
+      <circle cx="33" cy="8"  r="7.5"  fill="#7E9E8A" opacity="0.8" />
+      <circle cx="33" cy="8"  r="3.5"  fill="rgba(244,239,230,0.3)" />
+      <ellipse cx="33" cy="24" rx="9" ry="6" fill="#7E9E8A" opacity="0.5" />
+      {/* Person 3 — right */}
+      <circle cx="50" cy="14" r="6.5"  fill="#BF9E80" opacity="0.72" />
+      <ellipse cx="50" cy="28" rx="8" ry="5.5" fill="#BF9E80" opacity="0.48" />
     </svg>
   )
 }
@@ -544,6 +938,20 @@ function App() {
             <span className="hero-spark s3" aria-hidden="true">✧</span>
             <span className="hero-spark s4" aria-hidden="true">✦</span>
 
+            {/* ── Stickers: hero section ── */}
+            <Sticker className="sticker--float" style={{ top: '28px', right: '18%', transform: 'rotate(12deg)', opacity: 0.68 }}>
+              <StickerGentleSpark />
+            </Sticker>
+            <Sticker style={{ top: '138px', right: '-6px', transform: 'rotate(-14deg)', opacity: 0.55 }}>
+              <StickerMoon />
+            </Sticker>
+            <Sticker className="sticker--rotate" style={{ bottom: '168px', left: '-8px', transform: 'rotate(-6deg)', opacity: 0.5 }}>
+              <StickerGrowthSprout />
+            </Sticker>
+            <Sticker className="sticker--pulse" style={{ bottom: '60px', right: '8px', transform: 'rotate(6deg)', opacity: 0.42 }}>
+              <StickerDotTrail />
+            </Sticker>
+
             {/* ── Growth path: soft dotted journey line behind the text ── */}
             <svg className="hero-path" viewBox="0 0 500 440" fill="none" aria-hidden="true">
               <path
@@ -569,6 +977,10 @@ function App() {
             <div className="intention" role="note">
               <div className="intention-tape" aria-hidden="true" />
               <div className="intention-tape intention-tape--right" aria-hidden="true" />
+              {/* Sticker: leadership star bleeding off bottom-right */}
+              <Sticker style={{ bottom: '-16px', right: '22px', transform: 'rotate(10deg)', opacity: 0.72 }}>
+                <StickerLeadershipStar />
+              </Sticker>
               <div className="intention-head">
                 <span className="intention-glyph" aria-hidden="true">✦</span>
                 <span className="intention-label">Current Intention</span>
@@ -600,6 +1012,17 @@ function App() {
 
         {/* ════════════ BASELINE ════════════ */}
         <section id="baseline" className="section">
+          {/* Stickers: baseline section */}
+          <Sticker className="sticker--float" style={{ top: '82px', right: '8px', transform: 'rotate(-8deg)', opacity: 0.58 }}>
+            <StickerCompass />
+          </Sticker>
+          <Sticker style={{ top: '148px', right: '54px', transform: 'rotate(14deg)', opacity: 0.44 }}>
+            <StickerGentleSpark />
+          </Sticker>
+          <Sticker className="sticker--pulse" style={{ top: '240px', right: '-4px', transform: 'rotate(5deg)', opacity: 0.38 }}>
+            <StickerEvidenceTag />
+          </Sticker>
+
           <div className="sec-head">
             <span className="part-tag">01 / Baseline Map</span>
             <h2 className="sec-title">Baseline Map</h2>
@@ -664,6 +1087,10 @@ function App() {
 
           <div className="letter">
             <div className="letter-fold" aria-hidden="true" />
+            {/* Sticker: paper tape across top-left of letter, bleeding above */}
+            <Sticker style={{ top: '-10px', left: '36px', transform: 'rotate(-3.5deg)', opacity: 0.78 }}>
+              <StickerPaperTape w={84} h={22} color="rgba(191,158,112,0.46)" />
+            </Sticker>
             <div className="letter-head">
               <span className="letter-icon" aria-hidden="true">✉</span>
               <span className="letter-label">An Open Letter to Myself</span>
@@ -713,6 +1140,17 @@ function App() {
 
         {/* ════════════ DIARY ════════════ */}
         <section id="diary" className="section">
+          {/* Stickers: diary section */}
+          <Sticker className="sticker--float" style={{ top: '84px', left: '-6px', transform: 'rotate(-8deg)', opacity: 0.62 }}>
+            <StickerGrowthSprout />
+          </Sticker>
+          <Sticker style={{ top: '152px', right: '4px', transform: 'rotate(-18deg) scaleX(-1)', opacity: 0.5 }}>
+            <StickerDecisionArrow />
+          </Sticker>
+          <Sticker className="sticker--rotate" style={{ top: '58px', right: '18px', transform: 'rotate(6deg)', opacity: 0.38 }}>
+            <StickerQuestionMark />
+          </Sticker>
+
           <div className="sec-head">
             <span className="part-tag">02 / Weekly Diary</span>
             <h2 className="sec-title">Weekly Diary</h2>
@@ -725,25 +1163,43 @@ function App() {
             {/* Render from weeklyEntries — edit that array at the top of the file */}
             {weeklyEntries.map(entry => {
               const isPlaceholder = entry.status === 'placeholder'
+              const isSkipped     = entry.status === 'skipped'
               const isDone        = entry.status === 'done'
-              const nodeClass     = isPlaceholder ? 'tl-node--future' : 'tl-node--active'
-              const cardClass     = isPlaceholder ? 'diary-card--placeholder' : 'diary-card--active'
-              const badge = isPlaceholder
-                ? <span className="wk-badge wk-badge--soon">Mon check-in</span>
-                : isDone
-                  ? <span className="wk-badge wk-badge--soon">✓ Done</span>
-                  : <span className="wk-badge wk-badge--live">This Week</span>
+              const isActive      = entry.status === 'active'
+
+              const nodeClass = (isPlaceholder || isSkipped) ? 'tl-node--future' : 'tl-node--active'
+              const cardClass = isSkipped     ? 'diary-card--skipped'
+                              : isPlaceholder ? 'diary-card--placeholder'
+                              : 'diary-card--active'
+
+              const badge = isSkipped
+                ? <span className="wk-badge wk-badge--skipped">Skipped</span>
+                : isPlaceholder
+                  ? <span className="wk-badge wk-badge--soon">Mon check-in</span>
+                  : isDone
+                    ? <span className="wk-badge wk-badge--done">✓ Done</span>
+                    : <span className="wk-badge wk-badge--live">This Week</span>
 
               return (
                 <div key={entry.week} className="tl-row">
                   <div className={`tl-node ${nodeClass}`} aria-hidden="true">
-                    <span className={`tl-w${isPlaceholder ? ' tl-w--future' : ''}`}>W{entry.week}</span>
+                    <span className={`tl-w${(isPlaceholder || isSkipped) ? ' tl-w--future' : ''}`}>W{entry.week}</span>
                   </div>
 
-                  {isPlaceholder ? (
+                  {isSkipped ? (
                     <div className={`diary-card ${cardClass}`}>
                       <div className="diary-card-top">
-                        <h3 className="diary-title diary-title--placeholder">Week {entry.week} — Coming soon</h3>
+                        <h3 className="diary-title diary-title--skipped">{entry.title}</h3>
+                        {badge}
+                      </div>
+                      <p className="skipped-note">
+                        The course skipped the first week, so I am leaving this space as a marker rather than forcing a reflection that did not happen yet.
+                      </p>
+                    </div>
+                  ) : isPlaceholder ? (
+                    <div className={`diary-card ${cardClass}`}>
+                      <div className="diary-card-top">
+                        <h3 className="diary-title diary-title--placeholder">Week {entry.week} — Coming Soon</h3>
                         {badge}
                       </div>
                       <p className="placeholder-note">
@@ -753,15 +1209,60 @@ function App() {
                     </div>
                   ) : (
                     <div className={`diary-card ${cardClass}`}>
+                      {/* Decorative system-map watermark for Week 3 */}
+                      {entry.visualKeyword === 'systems' && (
+                        <div className="diary-card-deco" aria-hidden="true">
+                          <SystemMapIll />
+                        </div>
+                      )}
+
+                      {/* Per-week sticker accents */}
+                      {entry.week === 2 && (
+                        <Sticker style={{ top: '-11px', right: '56px', transform: 'rotate(-4deg)', opacity: 0.78 }}>
+                          <StickerEvidenceTag />
+                        </Sticker>
+                      )}
+                      {entry.week === 3 && (
+                        <Sticker style={{ top: '-11px', left: '92px', transform: 'rotate(3deg)', opacity: 0.72 }}>
+                          <StickerPaperTape w={68} h={20} color="rgba(164,186,184,0.55)" />
+                        </Sticker>
+                      )}
+                      {entry.week === 3 && (
+                        <Sticker className="sticker--pulse" style={{ top: '14px', right: '-8px', transform: 'rotate(-6deg)', opacity: 0.45 }}>
+                          <StickerGroupWork />
+                        </Sticker>
+                      )}
+
                       <div className="diary-card-top">
                         <h3 className="diary-title">Week {entry.week} — {entry.title}</h3>
                         {badge}
                       </div>
-                      <div className="diary-tags">
-                        <span className="dtag dtag--insight">Insight</span>
-                        <span className="dtag dtag--goal">Goal</span>
-                        <span className="dtag dtag--diff">Do Differently</span>
-                      </div>
+
+                      {entry.theme && (
+                        <p className="diary-theme">{entry.theme}</p>
+                      )}
+
+                      {entry.tags && entry.tags.length > 0 && (
+                        <div className="diary-tags">
+                          {entry.tags.map(tag => (
+                            <span key={tag} className={`dtag ${TAG_STYLE_MAP[tag] || 'dtag--insight'}`}>{tag}</span>
+                          ))}
+                        </div>
+                      )}
+
+                      {entry.groupNote && (
+                        <div className="diary-group-note">
+                          <strong>Group Project</strong>
+                          {entry.groupNote}
+                        </div>
+                      )}
+
+                      {entry.appNote && (
+                        <div className="diary-app-note">
+                          <span className="diary-app-note-label">Culture Decoder App</span>
+                          {entry.appNote}
+                        </div>
+                      )}
 
                       {entry.insight.length > 0 && (
                         <div className="diary-block">
@@ -781,6 +1282,13 @@ function App() {
                         <div className="diary-block">
                           <span className="dblock-label">One Thing I Will Do Differently</span>
                           {entry.action.map((para, i) => <p key={i}>{para}</p>)}
+                        </div>
+                      )}
+
+                      {entry.reflection && entry.reflection.length > 0 && (
+                        <div className="diary-block">
+                          <span className="dblock-label">Personal Reflection</span>
+                          {entry.reflection.map((para, i) => <p key={i}>{para}</p>)}
                         </div>
                       )}
                     </div>
@@ -826,6 +1334,17 @@ function App() {
 
         {/* ════════════ VISUAL NOTES ════════════ */}
         <section id="visual-notes" className="section">
+          {/* Stickers: visual notes section */}
+          <Sticker className="sticker--float" style={{ top: '76px', right: '12px', transform: 'rotate(8deg)', opacity: 0.62 }}>
+            <StickerCultureSignal />
+          </Sticker>
+          <Sticker style={{ top: '128px', left: '38%', transform: 'rotate(-5deg)', opacity: 0.46 }}>
+            <StickerListeningCloud />
+          </Sticker>
+          <Sticker className="sticker--pulse" style={{ top: '70px', right: '68px', transform: 'rotate(-10deg)', opacity: 0.5 }}>
+            <StickerSystemsMap />
+          </Sticker>
+
           <div className="sec-head">
             <span className="part-tag">03 / Visual Notes</span>
             <h2 className="sec-title">Ideas as Images</h2>
@@ -876,6 +1395,17 @@ function App() {
 
         {/* ════════════ PRACTICE ════════════ */}
         <section id="practice" className="section section--practice">
+          {/* Stickers: practice section */}
+          <Sticker className="sticker--float" style={{ top: '76px', right: '12px', transform: 'rotate(-7deg)', opacity: 0.55 }}>
+            <StickerGentleSpark />
+          </Sticker>
+          <Sticker style={{ bottom: '182px', right: '6px', transform: 'rotate(-4deg)', opacity: 0.4 }}>
+            <StickerMiniNote />
+          </Sticker>
+          <Sticker className="sticker--rotate" style={{ top: '38px', left: '-4px', transform: 'rotate(12deg)', opacity: 0.36 }}>
+            <StickerCultureGrid />
+          </Sticker>
+
           <div className="sec-head">
             <span className="part-tag">04 / Practice</span>
             <h2 className="sec-title">What I Am Practicing</h2>

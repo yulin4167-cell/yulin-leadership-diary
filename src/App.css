@@ -101,30 +101,49 @@ html { scroll-behavior: smooth; }
 
 /* ── Design tokens ─────────────────────────────────────────────── */
 :root {
-  --cream:         #F7F3EA;
-  --charcoal:      #2F3430;
-  --charcoal-mid:  #4B5450;
-  --charcoal-soft: #6B7570;
-  --sage:          #8FAF9C;
-  --sage-deep:     #6A9480;
-  --sage-light:    #C8DDD4;
-  --sage-pale:     #E4EFE9;
-  --mist:          #BFD7D9;
-  --mist-deep:     #7FBCC0;
-  --mist-light:    #DFF0F1;
-  --mist-pale:     #EEF7F8;
-  --wheat:         #E8C970;
-  --wheat-deep:    #C8A840;
-  --wheat-light:   #F5E4A8;
-  --wheat-pale:    #FBF3D8;
-  --border:        #D8D8D2;
-  --border-soft:   #ECEAE4;
-  --error:         #D97060;
+  /* ── Surfaces ──────────────────────────────────────────────── */
+  --cream:         #F4EFE6;   /* warm ivory */
+  --oat:           #EDE7DC;   /* soft oat, secondary surface */
+  --sand:          #E5DDD0;   /* warm sand/stone */
 
-  --shadow-xs: 0 1px 4px rgba(47,52,48,.05);
-  --shadow-sm: 0 2px 12px rgba(47,52,48,.07);
-  --shadow-md: 0 5px 24px rgba(47,52,48,.1);
-  --shadow-lg: 0 10px 40px rgba(47,52,48,.14);
+  /* ── Text ──────────────────────────────────────────────────── */
+  --charcoal:      #2A2F2C;
+  --charcoal-mid:  #474C49;
+  --charcoal-soft: #6A6E6B;
+
+  /* ── Sage — muted forest green ─────────────────────────────── */
+  --sage:          #7E9E8A;   /* desaturated, calm */
+  --sage-deep:     #5C7E6C;
+  --sage-light:    #B4C8BC;
+  --sage-pale:     #D9E6DF;
+
+  /* ── Mist — dusty blue-gray ─────────────────────────────────── */
+  --mist:          #A4BAB8;   /* dusty, not aqua */
+  --mist-deep:     #638E90;
+  --mist-light:    #C4D6D6;
+  --mist-pale:     #E0ECEC;
+
+  /* ── Wheat — antique gold (not bright yellow) ───────────────── */
+  --wheat:         #C6A444;   /* antique gold */
+  --wheat-deep:    #A48428;
+  --wheat-light:   #DECE84;
+  --wheat-pale:    #F0E8C2;
+
+  /* ── Clay — new warm accent ─────────────────────────────────── */
+  --clay:          #BF9E80;   /* warm clay / warm caramel */
+  --clay-deep:     #9A7A5A;
+  --clay-pale:     #EBE0D2;
+
+  /* ── Structure ──────────────────────────────────────────────── */
+  --border:        #CEC9BE;   /* warm, not cool-gray */
+  --border-soft:   #E6E1D8;
+  --error:         #C06050;
+
+  /* ── Shadows — slightly deeper, more diffuse ────────────────── */
+  --shadow-xs: 0 1px 5px rgba(42,47,44,.06);
+  --shadow-sm: 0 2px 14px rgba(42,47,44,.09);
+  --shadow-md: 0 6px 28px rgba(42,47,44,.12);
+  --shadow-lg: 0 12px 44px rgba(42,47,44,.15);
 
   --radius:    20px;
   --radius-sm: 12px;
@@ -956,7 +975,7 @@ button { cursor: pointer; font-family: inherit; }
   border-radius: var(--radius);
   padding: 48px 54px 42px;
   box-shadow: var(--shadow-sm);
-  position: relative; overflow: hidden;
+  position: relative; overflow: visible;
   transition: box-shadow .28s;
 }
 .letter:hover { box-shadow: var(--shadow-md); }
@@ -1064,6 +1083,7 @@ button { cursor: pointer; font-family: inherit; }
 .diary-card--active {
   border-left: 4px solid var(--sage);
   padding-left: 32px;
+  background: linear-gradient(155deg, rgba(217,230,223,.3) 0%, #fff 22%);
 }
 .diary-card--active:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
 .diary-card--placeholder {
@@ -1128,6 +1148,143 @@ button { cursor: pointer; font-family: inherit; }
   transition: all .2s;
 }
 .diary-add-btn:hover { border-color: var(--sage); color: var(--sage); background: var(--sage-pale); }
+
+
+/* ── Skipped card ─────────────────────────────────────────────── */
+.diary-card--skipped {
+  background: var(--cream);
+  border-style: dashed;
+  border-color: var(--border);
+  border-left: 3px dashed var(--border);
+  padding: 24px 36px;
+  opacity: 0.6;
+}
+.diary-title--skipped {
+  font-size: 17px;
+  color: var(--charcoal-soft);
+  font-style: italic;
+  text-decoration: line-through;
+  text-decoration-color: var(--border);
+  text-decoration-thickness: 1.5px;
+}
+.wk-badge--skipped {
+  background: var(--border-soft);
+  color: var(--charcoal-soft);
+  border: 1px dashed var(--border);
+  font-style: italic;
+}
+.wk-badge--done {
+  background: var(--sage-pale);
+  color: var(--sage-deep);
+  border: 1px solid rgba(143,175,156,.35);
+}
+.skipped-note {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.72;
+  color: var(--charcoal-soft);
+  font-style: italic;
+}
+
+
+/* ── Tag variants (diary card topic chips) ────────────────────── */
+.dtag--scarf    { background: var(--mist-pale);   color: #2D7A86; border: 1px solid rgba(191,215,217,.5); }
+.dtag--via      { background: var(--sage-pale);   color: #3A6E56; border: 1px solid rgba(143,175,156,.4); }
+.dtag--super    { background: var(--wheat-pale);  color: #7A5B0E; border: 1px solid rgba(232,201,112,.45); }
+.dtag--self     { background: var(--mist-light);  color: #2D6A7A; border: 1px solid rgba(191,215,217,.55); }
+.dtag--culture  { background: #F0EBF8;            color: #6B4E9C; border: 1px solid rgba(160,120,220,.28); }
+.dtag--systems  { background: var(--sage-pale);   color: #3A6E56; border: 1px solid rgba(143,175,156,.4); }
+.dtag--design   { background: var(--mist-pale);   color: #2D7A86; border: 1px solid rgba(191,215,217,.5); }
+.dtag--group    { background: var(--wheat-pale);  color: #7A5B0E; border: 1px solid rgba(232,201,112,.45); }
+
+
+/* ── Week 3 theme line ────────────────────────────────────────── */
+.diary-theme {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--charcoal-soft);
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border-soft);
+  line-height: 1.6;
+}
+.diary-theme::before {
+  content: 'Theme: ';
+  font-style: normal;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: 9.5px;
+  color: var(--sage-deep);
+  margin-right: 4px;
+}
+
+
+/* ── Group project note ───────────────────────────────────────── */
+.diary-group-note {
+  background: var(--sage-pale);
+  border-left: 3px solid var(--sage);
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--charcoal-mid);
+}
+.diary-group-note strong {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: var(--sage-deep);
+  margin-bottom: 4px;
+}
+
+
+/* ── Culture Decoder app note ─────────────────────────────────── */
+.diary-app-note {
+  background: var(--mist-pale);
+  border: 1px solid rgba(191,215,217,.5);
+  border-radius: var(--radius-xs);
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.68;
+  color: var(--charcoal-mid);
+  background-image: radial-gradient(circle, rgba(191,215,217,.22) 1.5px, transparent 1.5px);
+  background-size: 14px 14px;
+  background-position: top right;
+}
+.diary-app-note-label {
+  display: block;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  color: #2D7A86;
+  margin-bottom: 6px;
+}
+
+
+/* ── System-map watermark (Week 3 card corner) ────────────────── */
+.diary-card-deco {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 58px;
+  height: 58px;
+  opacity: 0.28;
+  pointer-events: none;
+}
+.diary-card-deco-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
 
 
 /* ================================================================
@@ -1369,4 +1526,113 @@ button { cursor: pointer; font-family: inherit; }
 
   /* ── Hero sparkles: show at resting opacity instead of invisible ── */
   .hero-spark          { animation: none !important; opacity: .2; }
+  /* ── Stickers: hold still ── */
+  .sticker--float,
+  .sticker--pulse,
+  .sticker--rotate { animation: none !important; }
 }
+
+
+/* ================================================================
+   New sticker system — Premium diary decoration layer
+   Floating sticker animations: float / pulse / rotate.
+   All stickers: pointer-events none, hidden below 860 px.
+   ================================================================ */
+
+/* Floating sticker animations */
+@keyframes stickerFloat {
+  0%, 100% { transform: translateY(0px) rotate(var(--sticker-r, 0deg)); }
+  35%       { transform: translateY(-9px) rotate(var(--sticker-r, 0deg)); }
+  70%       { transform: translateY(-4px) rotate(var(--sticker-r, 0deg)); }
+}
+
+@keyframes stickerPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.68; transform: scale(1.07); }
+}
+
+@keyframes stickerRotate {
+  0%, 100% { transform: rotate(-3deg); }
+  50%       { transform: rotate(3deg); }
+}
+
+.sticker {
+  position: absolute;
+  pointer-events: none;
+  z-index: 10;
+  user-select: none;
+  line-height: 0;
+}
+.sticker--float  { animation: stickerFloat  7s   ease-in-out infinite; }
+.sticker--pulse  { animation: stickerPulse  4.5s ease-in-out infinite; }
+.sticker--rotate { animation: stickerRotate 9s   ease-in-out infinite; }
+
+/* Semantic sticker class sizing overrides */
+.sticker-compass          { opacity: inherit; }
+.sticker-sprout           { opacity: inherit; }
+.sticker-cloud            { opacity: inherit; }
+.sticker-culture-signal   { opacity: inherit; }
+.sticker-system-map       { opacity: inherit; }
+.sticker-moon             { opacity: inherit; }
+.sticker-evidence-tag     { opacity: inherit; }
+.sticker-dot-trail        { opacity: inherit; }
+.sticker-spark            { opacity: inherit; }
+.sticker-question         { opacity: inherit; }
+.sticker-tape             { opacity: inherit; }
+.sticker-mini-note        { opacity: inherit; }
+.sticker-culture-grid     { opacity: inherit; }
+.sticker-leadership-star  { opacity: inherit; }
+.sticker-decision-arrow   { opacity: inherit; }
+.sticker-group-work       { opacity: inherit; }
+
+@media (max-width: 860px) {
+  .sticker { display: none; }
+}
+
+
+/* ================================================================
+   PREMIUM CARD EMBELLISHMENTS
+   Small refinements that add material depth.
+   ================================================================ */
+
+/* ── VN cards: warmer illustration backgrounds ────────────────── */
+.vn-art--sage  { background: linear-gradient(135deg, var(--sage-pale) 0%, var(--oat) 100%); }
+.vn-art--mist  { background: linear-gradient(135deg, var(--mist-pale) 0%, #e4eeef 100%); }
+.vn-art--wheat { background: linear-gradient(135deg, var(--wheat-pale) 0%, var(--clay-pale) 100%); }
+
+/* ── Practice cards: warm gradient ───────────────────────────── */
+.practice-card {
+  background: linear-gradient(155deg, var(--oat) 0%, #fff 35%);
+}
+
+/* ── Letter inner border accent ──────────────────────────────── */
+.letter::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border-radius: calc(var(--radius) - 4px);
+  border: 1px solid var(--border-soft);
+  pointer-events: none;
+}
+
+/* ── Skipped diary card: warmer muted tone ────────────────────── */
+.diary-card--skipped {
+  background: var(--oat);
+}
+
+/* ── Chip / tag updates: muted variants ──────────────────────── */
+.chip--score   { background: var(--mist-pale);  color: #2A666C; border-color: rgba(164,186,184,.45); }
+.chip--score em { color: #1C5558; }
+.chip--strength { background: var(--sage-pale); color: #325E4A; border-color: rgba(126,158,138,.35); }
+.chip--super-main { background: var(--wheat-pale); color: #6A5010; border-color: rgba(198,164,68,.38); }
+.chip--super-also { background: var(--sage-pale); color: #325E4A; border-color: rgba(126,158,138,.35); }
+
+/* ── Diary tag chip updates ────────────────────────────────────── */
+.dtag--scarf   { background: var(--mist-pale);  color: #2A666C; border-color: rgba(164,186,184,.45); }
+.dtag--via     { background: var(--sage-pale);  color: #325E4A; border-color: rgba(126,158,138,.35); }
+.dtag--super   { background: var(--wheat-pale); color: #6A5010; border-color: rgba(198,164,68,.38); }
+.dtag--self    { background: var(--mist-pale);  color: #2A666C; border-color: rgba(164,186,184,.45); }
+.dtag--culture { background: #EFE9F4;           color: #5E4088; border-color: rgba(150,110,200,.25); }
+.dtag--systems { background: var(--sage-pale);  color: #325E4A; border-color: rgba(126,158,138,.35); }
+.dtag--design  { background: var(--mist-pale);  color: #2A666C; border-color: rgba(164,186,184,.45); }
+.dtag--group   { background: var(--clay-pale);  color: #7A4E28; border-color: rgba(191,158,128,.35); }
