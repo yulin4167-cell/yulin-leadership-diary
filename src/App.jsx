@@ -13,10 +13,15 @@ const TAG_STYLE_MAP = {
   'Systems Thinking':  'dtag--systems',
   'Design Leadership': 'dtag--design',
   'Group Work':        'dtag--group',
-  'Field Trip':        'dtag--trip',
-  'Design Crit':       'dtag--crit',
-  'Product Culture':   'dtag--product',
-  'Career Fit':        'dtag--career',
+  'Field Trip':          'dtag--trip',
+  'Design Crit':         'dtag--crit',
+  'Product Culture':     'dtag--product',
+  'Career Fit':          'dtag--career',
+  'Conflict Resolution': 'dtag--conflict',
+  'Lateral Leadership':  'dtag--lateral',
+  'Scenario Design':     'dtag--scenario',
+  'Feedback':            'dtag--feedback',
+  'Decision-Making':     'dtag--decision',
 }
 
 const NAV_ITEMS = [
@@ -151,6 +156,26 @@ const weeklyEntries = [
       { src: '/images/week4/superhuman2.jpg', caption: 'Design culture in practice' },
       { src: '/images/week4/superhuman3.jpg', caption: 'Learning from the team' },
     ],
+    part2: {
+      title:      'Conflict Compass: Practicing Conflict Before It Counts',
+      eyebrow:    'Part 2 — Conflict Resolution Scenario App',
+      tags:       ['Conflict Resolution', 'Lateral Leadership', 'Scenario Design', 'Feedback', 'Decision-Making'],
+      frameworks: ['Fighter', 'Avoider', 'People Pleaser', 'Diplomat', 'Negotiator', 'SBI', 'AID', 'Radical Candor'],
+      insight: [
+        `Building the Conflict Resolution Scenario App helped me understand lateral leadership in a more practical way. Before this assignment, I understood conflict mostly as something uncomfortable that happens between people. But while designing the scenarios, I started to see conflict as a system of pressures: deadlines, hierarchy, unclear ownership, team fatigue, stakeholder expectations, and personal communication styles.`,
+        `The most useful part was mapping each response to a leadership pattern. A Fighter response can protect the work, but it can also make people defensive. Avoiding the issue may keep the meeting calm, but the real problem usually comes back later. People pleasing can protect the relationship in the short term, but it can quietly sacrifice design quality or user needs. Diplomat and Negotiator approaches helped me see that good conflict resolution is not about being nice all the time. It is about naming the tension clearly, keeping enough trust in the room, and creating a next step that people can actually follow.`,
+      ],
+      goal: [
+        `My goal after this assignment is to become more comfortable naming tension instead of smoothing it over too quickly. I often want conversations to stay calm and organized, but this project reminded me that avoiding conflict does not always protect the team. Sometimes leadership means saying the difficult thing in a way that still keeps the relationship workable.`,
+      ],
+      action: [
+        `In future group work or critique situations, I want to pause before reacting and ask myself what role I am falling into: am I avoiding, pleasing, fighting, or actually helping the group move toward a clearer decision? If there is disagreement, I will try to name the tradeoff directly and suggest a next step instead of only trying to make the conversation feel comfortable.`,
+      ],
+      reflection: [
+        `This project was useful because it made me rehearse situations I would normally feel nervous about. Designing the app forced me to think through not just what I would say, but what might happen after each response. That made conflict feel less like a personal failure and more like a leadership skill that can be practiced.`,
+        `It also connected back to my earlier self-awareness results. I know I value clarity, autonomy, and emotional safety, so I naturally want conversations to feel stable. But leadership will not always feel stable. Sometimes the important moment is exactly when things become tense or unclear. Through this assignment, I realized that my growth is not about becoming more aggressive. It is about becoming more honest, more specific, and more willing to stay present when disagreement appears.`,
+      ],
+    },
     mood:          'clearer',
     visualKeyword: 'compass',
   },
@@ -315,6 +340,37 @@ function CompassIll() {
       {/* Center hub */}
       <circle cx="32" cy="32" r="4.5" fill="#8FAF9C" opacity="0.78" />
       <circle cx="32" cy="32" r="2.2" fill="rgba(244,239,230,0.82)" />
+    </svg>
+  )
+}
+
+// Tension-map watermark — Conflict Compass / Part 2 card decoration
+function TensionMapIll() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" className="diary-card-deco-svg" aria-hidden="true">
+      {/* Outer dashed ring */}
+      <circle cx="32" cy="32" r="26" stroke="#BF9E80" strokeWidth="1" opacity="0.32" strokeDasharray="2 5" />
+      {/* Inner ring */}
+      <circle cx="32" cy="32" r="16" stroke="#BF9E80" strokeWidth="0.7" opacity="0.18" />
+      {/* N needle — assertive / Fighter direction (clay) */}
+      <path d="M32 7 L35 19 L32 22 L29 19 Z" fill="#BF9E80" opacity="0.72" />
+      {/* S needle — muted */}
+      <path d="M32 57 L35 45 L32 42 L29 45 Z" fill="#BF9E80" opacity="0.22" />
+      {/* E needle — sage (collaborative / Negotiator) */}
+      <path d="M57 32 L45 29 L42 32 L45 35 Z" fill="#8FAF9C" opacity="0.62" />
+      {/* W needle — muted */}
+      <path d="M7 32 L19 29 L22 32 L19 35 Z" fill="#BF9E80" opacity="0.22" />
+      {/* Spoke lines */}
+      <line x1="32" y1="32" x2="32" y2="10"  stroke="#BF9E80" strokeWidth="1.2" opacity="0.38" />
+      <line x1="32" y1="32" x2="32" y2="54"  stroke="#BF9E80" strokeWidth="0.8" opacity="0.18" />
+      <line x1="32" y1="32" x2="10"  y2="32" stroke="#BF9E80" strokeWidth="0.8" opacity="0.18" />
+      <line x1="32" y1="32" x2="54"  y2="32" stroke="#8FAF9C" strokeWidth="1.2" opacity="0.35" />
+      {/* Tension diagonals — antique gold */}
+      <line x1="14" y1="14" x2="50" y2="50" stroke="#C6A444" strokeWidth="0.8" opacity="0.18" strokeDasharray="3 6" />
+      <line x1="50" y1="14" x2="14" y2="50" stroke="#C6A444" strokeWidth="0.8" opacity="0.18" strokeDasharray="3 6" />
+      {/* Center hub */}
+      <circle cx="32" cy="32" r="5.5" fill="#BF9E80" opacity="0.75" />
+      <circle cx="32" cy="32" r="2.5" fill="rgba(244,239,230,0.88)" />
     </svg>
   )
 }
@@ -1381,6 +1437,71 @@ function App() {
                         <div className="diary-block">
                           <span className="dblock-label">Personal Reflection</span>
                           {entry.reflection.map((para, i) => <p key={i}>{para}</p>)}
+                        </div>
+                      )}
+
+                      {entry.part2 && (
+                        <div className="diary-part2">
+                          {/* ─── Part 2 divider ─── */}
+                          <div className="diary-part2-divider" aria-hidden="true">
+                            <span className="diary-part2-divider-label">Part 2</span>
+                          </div>
+
+                          {/* ─── Part 2 nested card ─── */}
+                          <div className="diary-part2-card">
+                            {/* Tension-map watermark */}
+                            <div className="diary-part2-deco" aria-hidden="true">
+                              <TensionMapIll />
+                            </div>
+
+                            <span className="diary-part2-eyebrow">{entry.part2.eyebrow}</span>
+                            <h4 className="diary-part2-title">{entry.part2.title}</h4>
+
+                            {entry.part2.tags && entry.part2.tags.length > 0 && (
+                              <div className="diary-tags diary-tags--part2">
+                                {entry.part2.tags.map(tag => (
+                                  <span key={tag} className={`dtag ${TAG_STYLE_MAP[tag] || 'dtag--insight'}`}>{tag}</span>
+                                ))}
+                              </div>
+                            )}
+
+                            {entry.part2.frameworks && entry.part2.frameworks.length > 0 && (
+                              <div className="diary-frameworks">
+                                <span className="diary-frameworks-label">Frameworks</span>
+                                {entry.part2.frameworks.map(fw => (
+                                  <span key={fw} className="fw-chip">{fw}</span>
+                                ))}
+                              </div>
+                            )}
+
+                            {entry.part2.insight && entry.part2.insight.length > 0 && (
+                              <div className="diary-block">
+                                <span className="dblock-label">Key Insight / Learning</span>
+                                {entry.part2.insight.map((para, i) => <p key={i}>{para}</p>)}
+                              </div>
+                            )}
+
+                            {entry.part2.goal && entry.part2.goal.length > 0 && (
+                              <div className="diary-block">
+                                <span className="dblock-label">Goal</span>
+                                {entry.part2.goal.map((para, i) => <p key={i}>{para}</p>)}
+                              </div>
+                            )}
+
+                            {entry.part2.action && entry.part2.action.length > 0 && (
+                              <div className="diary-block">
+                                <span className="dblock-label">One Thing I Will Do Differently</span>
+                                {entry.part2.action.map((para, i) => <p key={i}>{para}</p>)}
+                              </div>
+                            )}
+
+                            {entry.part2.reflection && entry.part2.reflection.length > 0 && (
+                              <div className="diary-block">
+                                <span className="dblock-label">Personal Reflection</span>
+                                {entry.part2.reflection.map((para, i) => <p key={i}>{para}</p>)}
+                              </div>
+                            )}
+                          </div>
                         </div>
                       )}
                     </div>
