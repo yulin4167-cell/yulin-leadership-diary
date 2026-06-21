@@ -159,6 +159,7 @@ const weeklyEntries = [
     part2: {
       title:      'Conflict Compass: Practicing Conflict Before It Counts',
       eyebrow:    'Part 2 — Conflict Resolution Scenario App',
+      appLink:    'https://yulin-conflict-resolution-app.vercel.app/',
       tags:       ['Conflict Resolution', 'Lateral Leadership', 'Scenario Design', 'Feedback', 'Decision-Making'],
       frameworks: ['Fighter', 'Avoider', 'People Pleaser', 'Diplomat', 'Negotiator', 'SBI', 'AID', 'Radical Candor'],
       insight: [
@@ -1499,6 +1500,20 @@ function App() {
                               <div className="diary-block">
                                 <span className="dblock-label">Personal Reflection</span>
                                 {entry.part2.reflection.map((para, i) => <p key={i}>{para}</p>)}
+                              </div>
+                            )}
+
+                            {entry.part2.appLink && (
+                              <div className="diary-app-link-wrap">
+                                <a
+                                  href={entry.part2.appLink}
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  className="diary-app-link-btn"
+                                >
+                                  <span className="diary-app-link-label">Deployed App</span>
+                                  <span className="diary-app-link-name">Conflict Compass →</span>
+                                </a>
                               </div>
                             )}
                           </div>
