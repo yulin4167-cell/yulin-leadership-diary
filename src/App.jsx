@@ -13,6 +13,10 @@ const TAG_STYLE_MAP = {
   'Systems Thinking':  'dtag--systems',
   'Design Leadership': 'dtag--design',
   'Group Work':        'dtag--group',
+  'Field Trip':        'dtag--trip',
+  'Design Crit':       'dtag--crit',
+  'Product Culture':   'dtag--product',
+  'Career Fit':        'dtag--career',
 }
 
 const NAV_ITEMS = [
@@ -119,15 +123,36 @@ const weeklyEntries = [
   // ── WEEK 4 ───────────────────────────────────────────────────────────────────
   {
     week:          4,
-    title:         'Coming Soon',
+    title:         'Superhuman Field Trip: Feedback, Fit, and Finding My Direction',
     date:          'Week 4',
-    status:        'placeholder',
-    tags:          [],
-    insight:       [],
-    goal:          [],
-    action:        [],
-    mood:          '',
-    visualKeyword: '',
+    status:        'done',
+    theme:         'Superhuman Site Visit / Design Leadership in Practice',
+    tags:          ['Field Trip', 'Design Crit', 'Product Culture', 'Career Fit', 'Self-awareness'],
+    insight: [
+      `This week's Superhuman site visit helped me see what design leadership looks like inside a fast-moving product company, not just as a concept we talk about in class. What stood out to me most was not only the product itself, but the way the team talked about work: through critique, quick feedback, clear communication, and constant attention to how small decisions affect the user experience.`,
+      `Sitting in on the design critique made me think differently about feedback culture. I noticed that critique is not just about pointing out what is wrong. It is also about how people listen, how they explain their thinking, and how they stay open when others question their work. That part felt important to me because I sometimes hesitate to speak up when I am not fully confident. Watching a real design team discuss work reminded me that contribution does not always have to be a perfect answer. Sometimes it can be a careful question, a small observation, or a different perspective.`,
+      `The visit also helped me understand my own sense of fit more clearly. Superhuman gave me a better view of screen-based product design, growth design, content design, and design systems inside a software company. I found those areas useful to learn about, but I also realized that I am still more drawn to design that connects with service, care, physical context, community, or emotional experience. That does not mean product design is not valuable to me; it just helped me see that the kind of design environment I want may need to include more than screens.`,
+      `The career conversations were the most useful part for me. One message I took away was that young designers cannot only wait for a role or title to define them. We need to build evidence of what we care about and what we can do. I also kept thinking about the advice around personal strengths: instead of listing everything, I need to become clearer about what I actually want to be known for.`,
+    ],
+    goal: [
+      `My goal after this visit is to become more honest and specific about the kinds of design environments where I can grow. Instead of only asking whether a company is impressive or well-known, I want to ask whether its culture, product direction, and working style match the type of designer I am becoming.`,
+      `I also want to practice describing my strengths more clearly. Right now, I can say I am interested in interaction design, service design, research, and emotional experience, but I want to make that sound more focused and confident.`,
+    ],
+    action: [
+      `In the next critique or group discussion, I will try to share at least one observation even if it feels small. I do not need to wait until I have a perfect idea. I can contribute by asking a useful question or noticing something others may not have mentioned.`,
+      `For my own career preparation, I will also start paying more attention to "fit" when I look at companies. I will not only look at the brand name or visual style. I will ask: What kind of work is rewarded here? What does the design team actually spend time doing? Would this environment help me grow in the direction I care about?`,
+    ],
+    reflection: [
+      `This field trip made the idea of design leadership feel more real to me. It showed me that leadership is not only about managing people or having a senior title. It can show up in how someone gives feedback, how they receive critique, how they protect their motivation, and how they keep thinking beyond the task they were assigned.`,
+      `I left with a clearer understanding that I do not need to force myself to fit every version of "successful designer." I can learn from a company like Superhuman while also noticing what does and does not feel right for me. That feels like an important leadership lesson too: knowing where I fit, what kind of work gives me energy, and how to keep building evidence around that direction.`,
+    ],
+    photos: [
+      { src: '/images/week4/superhuman1.jpg', caption: 'Field trip moment' },
+      { src: '/images/week4/superhuman2.jpg', caption: 'Design culture in practice' },
+      { src: '/images/week4/superhuman3.jpg', caption: 'Learning from the team' },
+    ],
+    mood:          'clearer',
+    visualKeyword: 'compass',
   },
 
   // ── WEEK 5 ───────────────────────────────────────────────────────────────────
@@ -256,6 +281,40 @@ function SystemMapIll() {
       <line x1="12" y1="12" x2="12" y2="52" stroke="#BFD7D9" strokeWidth="1" opacity="0.3" strokeDasharray="3 5" />
       <line x1="52" y1="52" x2="12" y2="52" stroke="#BFD7D9" strokeWidth="1" opacity="0.3" strokeDasharray="3 5" />
       <line x1="52" y1="52" x2="52" y2="12" stroke="#BFD7D9" strokeWidth="1" opacity="0.3" strokeDasharray="3 5" />
+    </svg>
+  )
+}
+
+// Compass rose watermark — Week 4 card decoration (career direction / field trip)
+function CompassIll() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" className="diary-card-deco-svg" aria-hidden="true">
+      {/* Outer ring */}
+      <circle cx="32" cy="32" r="28" stroke="#8FAF9C" strokeWidth="1.2" opacity="0.35" />
+      {/* Inner dashed ring */}
+      <circle cx="32" cy="32" r="19" stroke="#8FAF9C" strokeWidth="0.9" opacity="0.22" strokeDasharray="2.5 5" />
+      {/* Cardinal tick marks */}
+      <line x1="32" y1="4"  x2="32" y2="11" stroke="#8FAF9C" strokeWidth="2.2" strokeLinecap="round" />
+      <line x1="32" y1="53" x2="32" y2="60" stroke="#8FAF9C" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" />
+      <line x1="4"  y1="32" x2="11" y2="32" stroke="#8FAF9C" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" />
+      <line x1="53" y1="32" x2="60" y2="32" stroke="#8FAF9C" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" />
+      {/* Diagonal tick marks */}
+      <line x1="11" y1="11" x2="15" y2="15" stroke="#8FAF9C" strokeWidth="0.9" strokeLinecap="round" opacity="0.25" />
+      <line x1="49" y1="11" x2="53" y2="7"  stroke="#8FAF9C" strokeWidth="0.9" strokeLinecap="round" opacity="0.25" />
+      <line x1="11" y1="53" x2="7"  y2="57" stroke="#8FAF9C" strokeWidth="0.9" strokeLinecap="round" opacity="0.25" />
+      <line x1="53" y1="53" x2="57" y2="57" stroke="#8FAF9C" strokeWidth="0.9" strokeLinecap="round" opacity="0.25" />
+      {/* North needle — sage, filled */}
+      <path d="M32 8 L35.5 24 L32 27 L28.5 24 Z" fill="#8FAF9C" opacity="0.88" />
+      {/* South needle — muted */}
+      <path d="M32 56 L35.5 40 L32 37 L28.5 40 Z" fill="#8FAF9C" opacity="0.22" />
+      {/* East & West needle stubs */}
+      <path d="M40 32 L32 35 L32 29 Z" fill="#8FAF9C" opacity="0.2" />
+      <path d="M24 32 L32 35 L32 29 Z" fill="#8FAF9C" opacity="0.2" />
+      {/* Gold accent: N tip dot */}
+      <circle cx="32" cy="9" r="2" fill="#E8C970" opacity="0.72" />
+      {/* Center hub */}
+      <circle cx="32" cy="32" r="4.5" fill="#8FAF9C" opacity="0.78" />
+      <circle cx="32" cy="32" r="2.2" fill="rgba(244,239,230,0.82)" />
     </svg>
   )
 }
@@ -1209,10 +1268,15 @@ function App() {
                     </div>
                   ) : (
                     <div className={`diary-card ${cardClass}`}>
-                      {/* Decorative system-map watermark for Week 3 */}
+                      {/* Decorative watermarks — keyed by visualKeyword */}
                       {entry.visualKeyword === 'systems' && (
                         <div className="diary-card-deco" aria-hidden="true">
                           <SystemMapIll />
+                        </div>
+                      )}
+                      {entry.visualKeyword === 'compass' && (
+                        <div className="diary-card-deco" aria-hidden="true">
+                          <CompassIll />
                         </div>
                       )}
 
@@ -1232,6 +1296,16 @@ function App() {
                           <StickerGroupWork />
                         </Sticker>
                       )}
+                      {entry.week === 4 && (
+                        <Sticker style={{ top: '-11px', left: '76px', transform: 'rotate(-3deg)', opacity: 0.74 }}>
+                          <StickerPaperTape w={68} h={20} color="rgba(198,164,68,0.42)" />
+                        </Sticker>
+                      )}
+                      {entry.week === 4 && (
+                        <Sticker className="sticker--rotate" style={{ top: '10px', right: '-8px', transform: 'rotate(7deg)', opacity: 0.48 }}>
+                          <StickerCompass />
+                        </Sticker>
+                      )}
 
                       <div className="diary-card-top">
                         <h3 className="diary-title">Week {entry.week} — {entry.title}</h3>
@@ -1246,6 +1320,24 @@ function App() {
                         <div className="diary-tags">
                           {entry.tags.map(tag => (
                             <span key={tag} className={`dtag ${TAG_STYLE_MAP[tag] || 'dtag--insight'}`}>{tag}</span>
+                          ))}
+                        </div>
+                      )}
+
+                      {entry.photos && entry.photos.length > 0 && (
+                        <div className="diary-photos" role="group" aria-label="Field trip photos">
+                          {entry.photos.map((photo, i) => (
+                            <div key={i} className="diary-photo-item">
+                              <div className="diary-photo-frame">
+                                <img
+                                  src={photo.src}
+                                  alt={photo.caption}
+                                  className="diary-photo-img"
+                                  loading="lazy"
+                                />
+                              </div>
+                              <p className="diary-photo-caption">{photo.caption}</p>
+                            </div>
                           ))}
                         </div>
                       )}
