@@ -1206,6 +1206,13 @@ button { cursor: pointer; font-family: inherit; }
 .dtag--feedback  { background: var(--mist-pale);   color: #2D7A86; border: 1px solid rgba(191,215,217,.5);  }
 .dtag--decision  { background: var(--sage-pale);   color: #3A6E56; border: 1px solid rgba(143,175,156,.4);  }
 
+/* Week 5 tags */
+.dtag--ritual    { background: var(--sage-pale);   color: #3A6E56; border: 1px solid rgba(143,175,156,.42); }
+.dtag--facil     { background: var(--mist-pale);   color: #2D7A86; border: 1px solid rgba(191,215,217,.5);  }
+.dtag--retro     { background: var(--wheat-pale);  color: #7A5B0E; border: 1px solid rgba(232,201,112,.45); }
+.dtag--ai-coach  { background: #F0EBF8;            color: #6B4E9C; border: 1px solid rgba(160,120,220,.28); }
+.dtag--practice  { background: var(--clay-pale);   color: #7A4E28; border: 1px solid rgba(191,158,128,.4);  }
+
 
 /* ── Week 3 theme line ────────────────────────────────────────── */
 .diary-theme {
@@ -1588,6 +1595,41 @@ button { cursor: pointer; font-family: inherit; }
   .fw-chip           { font-size: 11px; padding: 2px 8px; }
   .diary-app-link-btn { padding: 10px 16px; }
   .diary-app-link-name { font-size: 14px; }
+}
+
+/* Week 5 cover image ──────────────────────────────────────────── */
+.diary-cover-wrap {
+  margin: 20px 0 26px;
+}
+.diary-cover-img {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 12px;
+  border: 1px solid rgba(143,175,156,0.3);
+  box-shadow: 0 4px 22px rgba(42,47,44,.13);
+  display: block;
+  object-fit: cover;
+}
+.diary-cover-caption {
+  margin-top: 8px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--charcoal-soft);
+  text-align: center;
+  max-width: 560px;
+}
+
+/* Sage variant for Week 5 project CTA ────────────────────────── */
+.diary-app-link-btn--sage {
+  border-color: rgba(143,175,156,0.38);
+}
+.diary-app-link-btn--sage:hover {
+  background: var(--sage-pale);
+  border-color: rgba(143,175,156,0.65);
+}
+.diary-app-link-btn--sage .diary-app-link-label {
+  color: var(--sage-deep);
 }
 
 /* System-map watermark (Week 3 card corner) ────────────────── */

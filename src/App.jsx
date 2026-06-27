@@ -22,6 +22,12 @@ const TAG_STYLE_MAP = {
   'Scenario Design':     'dtag--scenario',
   'Feedback':            'dtag--feedback',
   'Decision-Making':     'dtag--decision',
+  'Team Rituals':        'dtag--ritual',
+  'Facilitation':        'dtag--facil',
+  'Design Critique':     'dtag--crit',
+  'Retrospective':       'dtag--retro',
+  'AI Coach':            'dtag--ai-coach',
+  'Leadership Practice': 'dtag--practice',
 }
 
 const NAV_ITEMS = [
@@ -103,7 +109,7 @@ const weeklyEntries = [
     week:          3,
     title:         'Reading Culture as a System',
     date:          'Week 3',
-    status:        'active',
+    status:        'done',
     theme:         'Leading from the Whole / Organizational Culture & Systems Thinking',
     tags:          ['Culture Decoder', 'Systems Thinking', 'Design Leadership', 'Group Work'],
     groupNote:     'LbD GROUP 2 WORK — Rae, Ayushi, Yulin, Karen',
@@ -183,16 +189,33 @@ const weeklyEntries = [
 
   // ── WEEK 5 ───────────────────────────────────────────────────────────────────
   {
-    week:          5,
-    title:         'Coming Soon',
-    date:          'Week 5',
-    status:        'placeholder',
-    tags:          [],
-    insight:       [],
-    goal:          [],
-    action:        [],
-    mood:          '',
-    visualKeyword: '',
+    week:             5,
+    title:            'Designing Rituals as Leadership Tools',
+    date:             'Week 5',
+    status:           'done',
+    theme:            'Team Ritual Playbook / Ritual Compass',
+    tags:             ['Team Rituals', 'Facilitation', 'Design Critique', 'Retrospective', 'AI Coach', 'Leadership Practice'],
+    coverImage:       '/images/week5/ritual-compass-cover.png',
+    coverCaption:     'Ritual Compass — Team Ritual Playbook',
+    projectLink:      'https://yulin-team-ritual-playbook-mt1i.vercel.app/',
+    projectLinkLabel: 'Open Ritual Compass →',
+    insight: [
+      `This week helped me understand that team rituals are not just meetings on a calendar. A design critique, a retrospective, or even a simple team check-in can shape how people give feedback, build trust, make decisions, and recover from tension. Before this assignment, I usually thought about meetings from the participant side: whether they were useful, boring, stressful, or too long. But while building Ritual Compass, I had to think from the facilitator's side: what is the purpose of this ritual, what kind of energy does the room need, what should happen first, and how do we help people leave with more clarity than they came in with?`,
+      `I focused on Design Critique and Retrospective because they represent two different kinds of leadership work. Design critique is about improving the work without making feedback feel personal or scattered. Retrospective is about improving how the team works together, especially after a project, conflict, or repeated pattern. Building both made me realize that good facilitation is not about controlling the room. It is about creating enough structure so that people can speak honestly, listen better, and move toward a useful next step.`,
+      `The AI Ritual Coach also made me think about how AI can support leadership practice without replacing human judgment. I did not want the AI feature to feel like a generic chatbot. I wanted it to be grounded in the playbook itself, so the advice connects back to the ritual templates. That helped me understand AI as a support tool for preparation and reflection, not as something that should make decisions for the facilitator.`,
+    ],
+    goal: [
+      `My goal after this week is to become more intentional about how I enter group work. Instead of only thinking about my own tasks, I want to pay more attention to the structure around collaboration: how feedback is invited, how quiet people are included, how decisions are made, and whether the team actually follows up after a discussion.`,
+    ],
+    action: [
+      `In the next group project or critique, I will try to notice the "ritual" behind the meeting. If the conversation feels unclear, I will ask what kind of feedback or decision we are trying to get. If people are quiet, I will suggest a small structure like silent notes or round-robin sharing. I want to practice contributing not only with design ideas, but also with better ways of helping the group work together.`,
+    ],
+    reflection: [
+      `This assignment connected closely to my own leadership style. I tend to value clarity, emotional safety, and structure, so designing rituals felt natural to me. At the same time, I realized that structure should not make a team rigid. The best rituals leave space for real conversation, disagreement, and unexpected insights. That balance feels important for me: I do not want to lead by forcing everything into order, but by creating a space where people can think more clearly together.`,
+      `Ritual Compass also made me see facilitation as a design problem. The "user" is not only one person; it is the whole team, the conversation, the tension, and the outcome. A good ritual has flow, timing, prompts, guardrails, and a clear ending. In that sense, designing a meeting is not separate from interaction design. It is another way of shaping experience.`,
+    ],
+    mood:          'more intentional',
+    visualKeyword: 'ritual',
   },
 
   // ── WEEK 6 ───────────────────────────────────────────────────────────────────
@@ -372,6 +395,41 @@ function TensionMapIll() {
       {/* Center hub */}
       <circle cx="32" cy="32" r="5.5" fill="#BF9E80" opacity="0.75" />
       <circle cx="32" cy="32" r="2.5" fill="rgba(244,239,230,0.88)" />
+    </svg>
+  )
+}
+
+// Ritual-map watermark — Week 5 card decoration (facilitation circle / team ritual)
+function RitualMapIll() {
+  // 6 seat nodes at radius 24 around center (32,32)
+  const seats = [
+    { cx: 32,   cy: 8    },  // 0°   top
+    { cx: 52.8, cy: 20   },  // 60°
+    { cx: 52.8, cy: 44   },  // 120°
+    { cx: 32,   cy: 56   },  // 180° bottom
+    { cx: 11.2, cy: 44   },  // 240°
+    { cx: 11.2, cy: 20   },  // 300°
+  ]
+  return (
+    <svg viewBox="0 0 64 64" fill="none" className="diary-card-deco-svg" aria-hidden="true">
+      {/* Outer guide ring */}
+      <circle cx="32" cy="32" r="26" stroke="#8FAF9C" strokeWidth="0.9" opacity="0.22" strokeDasharray="2 5" />
+      {/* Inner table circle */}
+      <circle cx="32" cy="32" r="9.5" fill="#8FAF9C" opacity="0.78" />
+      <circle cx="32" cy="32" r="5.5" fill="rgba(244,239,230,0.82)" />
+      {/* Spokes and seat nodes */}
+      {seats.map((s, i) => (
+        <g key={i}>
+          <line x1="32" y1="32" x2={s.cx} y2={s.cy}
+            stroke="#8FAF9C" strokeWidth="1.1" opacity="0.38" />
+          <circle cx={s.cx} cy={s.cy} r="4.5" fill="#8FAF9C" opacity={i === 0 ? 0.82 : 0.58} />
+          <circle cx={s.cx} cy={s.cy} r="2.2" fill="rgba(244,239,230,0.72)" />
+        </g>
+      ))}
+      {/* Gold accent — facilitator marker at top seat */}
+      <circle cx="32" cy="8" r="2.2" fill="#C6A444" opacity="0.72" />
+      {/* Perimeter connector ring (dashed) */}
+      <circle cx="32" cy="32" r="24" stroke="#8FAF9C" strokeWidth="0.7" opacity="0.18" strokeDasharray="3 6" />
     </svg>
   )
 }
@@ -1336,6 +1394,11 @@ function App() {
                           <CompassIll />
                         </div>
                       )}
+                      {entry.visualKeyword === 'ritual' && (
+                        <div className="diary-card-deco" aria-hidden="true">
+                          <RitualMapIll />
+                        </div>
+                      )}
 
                       {/* Per-week sticker accents */}
                       {entry.week === 2 && (
@@ -1363,6 +1426,16 @@ function App() {
                           <StickerCompass />
                         </Sticker>
                       )}
+                      {entry.week === 5 && (
+                        <Sticker style={{ top: '-11px', left: '76px', transform: 'rotate(-3deg)', opacity: 0.74 }}>
+                          <StickerPaperTape w={68} h={20} color="rgba(143,175,156,0.45)" />
+                        </Sticker>
+                      )}
+                      {entry.week === 5 && (
+                        <Sticker className="sticker--float" style={{ top: '10px', right: '-8px', transform: 'rotate(8deg)', opacity: 0.46 }}>
+                          <StickerGroupWork />
+                        </Sticker>
+                      )}
 
                       <div className="diary-card-top">
                         <h3 className="diary-title">Week {entry.week} — {entry.title}</h3>
@@ -1378,6 +1451,20 @@ function App() {
                           {entry.tags.map(tag => (
                             <span key={tag} className={`dtag ${TAG_STYLE_MAP[tag] || 'dtag--insight'}`}>{tag}</span>
                           ))}
+                        </div>
+                      )}
+
+                      {entry.coverImage && (
+                        <div className="diary-cover-wrap">
+                          <img
+                            src={entry.coverImage}
+                            alt={entry.coverCaption || 'Project cover'}
+                            className="diary-cover-img"
+                            loading="lazy"
+                          />
+                          {entry.coverCaption && (
+                            <p className="diary-cover-caption">{entry.coverCaption}</p>
+                          )}
                         </div>
                       )}
 
@@ -1438,6 +1525,20 @@ function App() {
                         <div className="diary-block">
                           <span className="dblock-label">Personal Reflection</span>
                           {entry.reflection.map((para, i) => <p key={i}>{para}</p>)}
+                        </div>
+                      )}
+
+                      {entry.projectLink && (
+                        <div className="diary-app-link-wrap">
+                          <a
+                            href={entry.projectLink}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="diary-app-link-btn diary-app-link-btn--sage"
+                          >
+                            <span className="diary-app-link-label">Live Project</span>
+                            <span className="diary-app-link-name">{entry.projectLinkLabel || 'Open Project →'}</span>
+                          </a>
                         </div>
                       )}
 
