@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './App.css'
 
 // ── Constants ────────────────────────────────────────────────────────────────
@@ -28,6 +28,11 @@ const TAG_STYLE_MAP = {
   'Retrospective':       'dtag--retro',
   'AI Coach':            'dtag--ai-coach',
   'Leadership Practice': 'dtag--practice',
+  'UI/UX':               'dtag--ux',
+  'Career Growth':       'dtag--career',
+  'Team Collaboration':  'dtag--collab',
+  'AI and Design':       'dtag--ai-design',
+  'Communication':       'dtag--comm',
 }
 
 const NAV_ITEMS = [
@@ -37,6 +42,7 @@ const NAV_ITEMS = [
   { id: 'diary',        label: 'Diary' },
   { id: 'visual-notes', label: 'Visual Notes' },
   { id: 'practice',     label: 'Practice' },
+  { id: 'closing',      label: 'Closing'  },
 ]
 
 const SCARF_SCORES  = [
@@ -47,6 +53,29 @@ const SCARF_SCORES  = [
   { label: 'Fairness',    score: '5.33' },
 ]
 const VIA_STRENGTHS = ['Spirituality', 'Gratitude', 'Prudence', 'Honesty', 'Fairness']
+
+const CAPABILITIES = [
+  { id: 'A', name: 'Self-Awareness',       phrase: 'Noticing patterns in myself',          color: '#8FAF9C', progress: 0.82, label: 'Foundation' },
+  { id: 'B', name: 'Communication',         phrase: 'Speaking more clearly with others',   color: '#A4BAB8', progress: 0.76, label: 'Practiced'  },
+  { id: 'C', name: 'Facilitation',          phrase: 'Designing better team moments',       color: '#8FAF9C', progress: 0.78, label: 'Developed'  },
+  { id: 'D', name: 'Systems Thinking',      phrase: 'Reading context, not just tasks',     color: '#A4BAB8', progress: 0.72, label: 'Growing'    },
+  { id: 'E', name: 'Conflict Navigation',   phrase: 'Responding instead of avoiding',      color: '#BF9E80', progress: 0.75, label: 'Practiced'  },
+  { id: 'F', name: 'Leadership Confidence', phrase: 'Taking initiative with more clarity', color: '#C6A444', progress: 0.80, label: 'Emerging'   },
+]
+
+const JOURNEY_MILESTONES = [
+  { title: 'Baseline',          line: 'Started by understanding my patterns'                    },
+  { title: 'Weekly Reflection', line: 'Built the habit of checking in regularly'               },
+  { title: 'Culture & Systems', line: 'Learned to read teams beyond the surface'               },
+  { title: 'Conflict Practice', line: 'Practiced leadership through difficult conversations'    },
+  { title: 'Ritual Design',     line: 'Shifted from individual reflection to team facilitation' },
+]
+
+const TAKEAWAYS = [
+  'Leadership is a practice, not a title.',
+  'Good questions can change a team dynamic.',
+  'I grow most when I reflect, test, and adjust.',
+]
 
 // ── Weekly Diary entries ──────────────────────────────────────────────────────
 //
@@ -114,6 +143,12 @@ const weeklyEntries = [
     tags:          ['Culture Decoder', 'Systems Thinking', 'Design Leadership', 'Group Work'],
     groupNote:     'LbD GROUP 2 WORK — Rae, Ayushi, Yulin, Karen',
     appNote:       'Our group built a Culture Decoder App as an interactive culture profile. The assignment asked us to read organizational culture not only by what a company says it values, but by what it actually rewards, tolerates, and punishes.',
+    projectCard: {
+      image:    '/images/week3/culture-decoder-cover.png',
+      url:      'https://2606-decoder-app.dalrae-jin-work.workers.dev/',
+      title:    'Open Culture Decoder App →',
+      subtitle: 'Group project by Rae, Ayushi, Yulin, and Karen',
+    },
     insight: [
       `This week, I learned that organizational culture is not only something written on a company values page. It shows up in repeated behaviors, decision-making patterns, hiring language, employee reviews, and what people feel they need to do in order to succeed. The Culture Decoder App helped me understand culture as a system instead of a surface-level brand story.`,
       `Using Schein's three levels of culture made me slow down and separate visible artifacts, stated values, and deeper tacit assumptions. The Goffee & Jones sociability vs. solidarity grid also helped me see that a company can be warm but not aligned, or highly aligned but emotionally intense. Design maturity became another important lens because it shows whether design is only used for execution or actually has influence in strategy and decision-making.`,
@@ -220,16 +255,66 @@ const weeklyEntries = [
 
   // ── WEEK 6 ───────────────────────────────────────────────────────────────────
   {
-    week:          6,
-    title:         'Coming Soon',
-    date:          'Week 6',
-    status:        'placeholder',
-    tags:          [],
-    insight:       [],
-    goal:          [],
-    action:        [],
-    mood:          '',
-    visualKeyword: '',
+    week:   6,
+    title:  'Interviewing a Design Leader',
+    date:   'Week 6',
+    status: 'done',
+    theme:  'Design Leadership Interview / Career Reflection',
+    tags:         ['Design Leadership', 'UI/UX', 'Career Growth', 'Team Collaboration', 'AI and Design', 'Communication'],
+    coverImage:   '/images/week6/interview-screenshot.png',
+    coverCaption: 'Interview assignment context',
+    notesPhotos: [
+      { src: '/images/week6/interview-notes-1.jpg', caption: 'Field notes — leadership themes' },
+      { src: '/images/week6/interview-notes-2.jpg', caption: 'Field notes — advice and reflection' },
+    ],
+    sections: [
+      {
+        label: 'Interview Context',
+        paragraphs: [
+          `For this assignment, I interviewed a senior UI/UX designer with around nine years of professional experience. I wanted to understand how a designer grows from doing individual design work into taking on more leadership responsibility, especially in a field where the role of design is changing quickly because of business pressure, team structures, and AI.`,
+          `One of the first things I learned is that design leadership does not happen suddenly. My interviewee described it as a long process of building experience, judgment, communication skills, and trust. In her view, it may take ten to twelve years for a designer to move from focusing mainly on execution to being able to guide people, projects, and decisions at a leadership level. This made me realize that leadership is not only about having a senior title. It is built through many smaller moments: making decisions, handling pressure, understanding users, communicating with different teams, and learning how to support others.`,
+        ],
+      },
+      {
+        label: 'Key Takeaways',
+        paragraphs: [
+          `A major point from the interview was that design leaders need to deal with complexity from many sides. They are not only thinking about beautiful interfaces or user flows. They also need to understand the organization, the team, the users, the business goals, and the real limitations of a project. My interviewee talked about how different organizations have different expectations for design. In some companies, design may have a strong voice in product strategy. In others, design may need to work harder to prove its value. Because of this, a leader has to understand the actual situation they are working in instead of applying one fixed method everywhere.`,
+          `She also mentioned that design work often involves different opinions and functional issues. Designers may have one direction, product managers may have another, and engineers may see technical risks or limitations. A design leader has to listen to these different voices and help the team move forward. This does not mean simply pleasing everyone. It means knowing when to push, when to adjust, and when to ask better questions. I found this useful because I often think of leadership as making the final decision, but this conversation helped me see leadership more as guiding the process before the decision happens.`,
+          `Another important part of the interview was about team collaboration. My interviewee said that designers and engineers need time to build working relationships. A good team does not appear immediately. People need to understand each other's working style, expectations, and constraints. She also said that mistakes are normal, especially when a team is testing new ideas or working under uncertainty. What matters is whether the team can learn from those mistakes and improve the process. This connected to our class discussions about leadership because it shows that a leader's job is not only to avoid problems, but also to create an environment where people can recover from problems.`,
+        ],
+      },
+      {
+        label: 'Leadership Lessons',
+        paragraphs: [
+          `We also talked about branding and product strategy. One point that stood out to me was that brand promotion should depend on the product itself, the target users, and the market expectations. A small product, a large platform, and a service for a niche group may need very different strategies. This reminded me that design decisions cannot be separated from context. A strong design leader should not only ask, "Does this look good?" but also, "Who is this for? What does the user need? What does the market expect? What is the company trying to communicate?"`,
+          `When I asked about how leaders support their teams, my interviewee emphasized the importance of pushing people forward while also helping them build confidence. She described leadership as helping the team see a bigger picture instead of only focusing on the task in front of them. A leader needs to help people understand what they are learning, why the work matters, and how their skills can grow. This felt very meaningful to me because I sometimes focus too much on finishing the deliverable. The interview reminded me that growth also happens through reflection, feedback, and understanding the reason behind the work.`,
+        ],
+      },
+      {
+        label: 'Advice for Young Designers',
+        paragraphs: [
+          `Her advice for young designers was especially helpful. She encouraged me to keep building experience, improve communication skills, interact with different kinds of people, and not limit myself to only one type of design task. She also mentioned resilience, which I think is very important. Design work often includes rejection, revision, unclear feedback, and changing requirements. Being a designer is not only about creativity. It also requires patience, confidence, and the ability to keep learning when things do not go smoothly.`,
+          `We also discussed AI. My interviewee did not describe AI as something that will simply replace designers. Instead, she talked about how AI may change the design workflow. Designers will need to understand how to use AI tools, how to judge the results, and how to keep their own design thinking. This made me feel less anxious about AI. I realized that the important question is not only whether AI can produce design outputs, but whether designers can still ask the right questions, understand people, communicate ideas, and make thoughtful decisions.`,
+        ],
+      },
+      {
+        label: 'Personal Reflection',
+        paragraphs: [
+          `Overall, this interview helped me understand design leadership in a more realistic way. Before the conversation, I thought of leadership mainly as managing a team or making big decisions. After the interview, I see it more as a combination of judgment, communication, context awareness, and emotional stability. A design leader needs to understand the work, but also the people around the work. They need to care about users, but also know how to work with product, engineering, business, and organizational limits.`,
+          `My biggest takeaway is that leadership is not a separate stage that begins after someone becomes a manager. It starts earlier, in how a designer communicates, responds to feedback, builds relationships, handles uncertainty, and supports the team. For myself, I want to keep developing not only my design skills, but also my ability to explain decisions, listen to different perspectives, and stay calm when the project becomes unclear or pressured. This interview made me think more seriously about the kind of designer I want to become: not just someone who makes screens, but someone who can help a team move with more clarity.`,
+        ],
+      },
+    ],
+    pullQuotes: [
+      'Leadership starts before the title.',
+      'Good design leaders understand the work and the people around the work.',
+      'AI changes the workflow, but not the need for design judgment.',
+    ],
+    insight:  [],
+    goal:     [],
+    action:   [],
+    mood:     'reflective',
+    visualKeyword: 'conversation',
   },
 
 ]
@@ -430,6 +515,59 @@ function RitualMapIll() {
       <circle cx="32" cy="8" r="2.2" fill="#C6A444" opacity="0.72" />
       {/* Perimeter connector ring (dashed) */}
       <circle cx="32" cy="32" r="24" stroke="#8FAF9C" strokeWidth="0.7" opacity="0.18" strokeDasharray="3 6" />
+    </svg>
+  )
+}
+
+// Conversation-map watermark — Week 6 card decoration (interview / leadership path)
+function ConversationMapIll() {
+  return (
+    <svg viewBox="0 0 64 64" fill="none" className="diary-card-deco-svg" aria-hidden="true">
+      {/* Left node — listener / you */}
+      <circle cx="12" cy="32" r="8"   fill="#8FAF9C" opacity="0.82" />
+      <circle cx="12" cy="32" r="4"   fill="rgba(244,239,230,0.82)" />
+      {/* Right node — design leader / speaker */}
+      <circle cx="52" cy="32" r="8"   fill="#A4BAB8" opacity="0.72" />
+      <circle cx="52" cy="32" r="4"   fill="rgba(244,239,230,0.82)" />
+      {/* Upper conversation arc */}
+      <path d="M 12 25 Q 32 10 52 25"
+        stroke="#8FAF9C" strokeWidth="1.7" fill="none" opacity="0.55" />
+      {/* Lower arc — return flow */}
+      <path d="M 12 39 Q 32 54 52 39"
+        stroke="#8FAF9C" strokeWidth="1.1" fill="none" opacity="0.3"
+        strokeDasharray="2 4" />
+      {/* Gold dot — insight apex of upper arc */}
+      <circle cx="32" cy="14" r="3.5" fill="#C6A444" opacity="0.72" />
+      {/* Center dashed connector */}
+      <line x1="20" y1="32" x2="44" y2="32"
+        stroke="#8FAF9C" strokeWidth="0.9" opacity="0.2" strokeDasharray="3 5" />
+      {/* Forward arrow — leadership direction / growth path */}
+      <path d="M 58 29 L 63 32 L 58 35"
+        stroke="#C6A444" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
+        fill="none" opacity="0.62" />
+    </svg>
+  )
+}
+
+// ── Capability progress arc — closing section ─────────────────────────────────
+function CapabilityArc({ progress = 0.75, color = '#8FAF9C' }) {
+  const r = 15, cx = 20, cy = 20
+  const circ = 2 * Math.PI * r
+  const dash = circ * progress
+  return (
+    <svg viewBox="0 0 40 40" width="44" height="44" fill="none" aria-hidden="true">
+      <circle cx={cx} cy={cy} r={r}
+        stroke={color} strokeWidth="2" opacity="0.18"
+        fill="none" strokeDasharray="2 4.5" />
+      <circle cx={cx} cy={cy} r={r}
+        stroke={color} strokeWidth="2.8" opacity="0.85"
+        fill="none"
+        strokeDasharray={`${dash.toFixed(1)} ${(circ - dash).toFixed(1)}`}
+        strokeLinecap="round"
+        transform={`rotate(-90 ${cx} ${cy})`}
+      />
+      <circle cx={cx} cy={cy} r="4"   fill={color} opacity="0.78" />
+      <circle cx={cx} cy={cy} r="2.2" fill="rgba(244,239,230,0.92)" />
     </svg>
   )
 }
@@ -857,6 +995,57 @@ function AssessmentCard({ tag, tagClass, cardType, title, summary, fullText, chi
   )
 }
 
+// ── Reusable click-to-enlarge image ──────────────────────────────────────────
+function DiaryImage({ src, alt, caption, className, onOpen }) {
+  return (
+    <img
+      src={src}
+      alt={alt}
+      className={`diary-zoomable${className ? ' ' + className : ''}`}
+      onClick={() => onOpen(src, caption || alt)}
+      loading="lazy"
+    />
+  )
+}
+
+function Lightbox({ src, caption, onClose }) {
+  const closeRef = useRef(null)
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose() }
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    closeRef.current?.focus()
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return (
+    <div
+      className="lightbox-overlay"
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+    >
+      <div className="lightbox-content" onClick={(e) => e.stopPropagation()}>
+        <button
+          ref={closeRef}
+          className="lightbox-close"
+          onClick={onClose}
+          aria-label="Close image viewer"
+        >
+          ✕
+        </button>
+        <img src={src} alt={caption || ''} className="lightbox-img" />
+        {caption && <p className="lightbox-caption">{caption}</p>}
+      </div>
+    </div>
+  )
+}
+
 // ── Intro Screen ──────────────────────────────────────────────────────────────
 function IntroScreen({ onEnter }) {
   const [phase,   setPhase]   = useState(0)
@@ -998,6 +1187,11 @@ function App() {
   const [extraEntries,   setExtraEntries]   = useState(() => {
     try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]') } catch { return [] }
   })
+  const [lightboxSrc,     setLightboxSrc]     = useState(null)
+  const [lightboxCaption, setLightboxCaption] = useState('')
+
+  const openLightbox  = (src, caption) => { setLightboxSrc(src); setLightboxCaption(caption || '') }
+  const closeLightbox = () => setLightboxSrc(null)
 
   useEffect(() => { document.title = 'The Gentle Growth Log — Leadership Diary by Yulin Li' }, [])
 
@@ -1399,6 +1593,11 @@ function App() {
                           <RitualMapIll />
                         </div>
                       )}
+                      {entry.visualKeyword === 'conversation' && (
+                        <div className="diary-card-deco" aria-hidden="true">
+                          <ConversationMapIll />
+                        </div>
+                      )}
 
                       {/* Per-week sticker accents */}
                       {entry.week === 2 && (
@@ -1436,6 +1635,16 @@ function App() {
                           <StickerGroupWork />
                         </Sticker>
                       )}
+                      {entry.week === 6 && (
+                        <Sticker style={{ top: '-11px', left: '76px', transform: 'rotate(2deg)', opacity: 0.7 }}>
+                          <StickerPaperTape w={68} h={20} color="rgba(191,215,217,0.48)" />
+                        </Sticker>
+                      )}
+                      {entry.week === 6 && (
+                        <Sticker className="sticker--pulse" style={{ top: '12px', right: '-8px', transform: 'rotate(-7deg)', opacity: 0.44 }}>
+                          <StickerListeningCloud />
+                        </Sticker>
+                      )}
 
                       <div className="diary-card-top">
                         <h3 className="diary-title">Week {entry.week} — {entry.title}</h3>
@@ -1456,11 +1665,12 @@ function App() {
 
                       {entry.coverImage && (
                         <div className="diary-cover-wrap">
-                          <img
+                          <DiaryImage
                             src={entry.coverImage}
                             alt={entry.coverCaption || 'Project cover'}
+                            caption={entry.coverCaption}
                             className="diary-cover-img"
-                            loading="lazy"
+                            onOpen={openLightbox}
                           />
                           {entry.coverCaption && (
                             <p className="diary-cover-caption">{entry.coverCaption}</p>
@@ -1473,11 +1683,12 @@ function App() {
                           {entry.photos.map((photo, i) => (
                             <div key={i} className="diary-photo-item">
                               <div className="diary-photo-frame">
-                                <img
+                                <DiaryImage
                                   src={photo.src}
                                   alt={photo.caption}
+                                  caption={photo.caption}
                                   className="diary-photo-img"
-                                  loading="lazy"
+                                  onOpen={openLightbox}
                                 />
                               </div>
                               <p className="diary-photo-caption">{photo.caption}</p>
@@ -1498,6 +1709,29 @@ function App() {
                           <span className="diary-app-note-label">Culture Decoder App</span>
                           {entry.appNote}
                         </div>
+                      )}
+
+                      {entry.projectCard && (
+                        <a
+                          href={entry.projectCard.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="diary-project-card"
+                          aria-label={entry.projectCard.title}
+                        >
+                          <div className="diary-project-card-img-wrap">
+                            <img
+                              src={entry.projectCard.image}
+                              alt={entry.projectCard.title}
+                              className="diary-project-card-img"
+                              draggable="false"
+                            />
+                          </div>
+                          <div className="diary-project-card-footer">
+                            <span className="diary-project-card-title">{entry.projectCard.title}</span>
+                            <span className="diary-project-card-sub">{entry.projectCard.subtitle}</span>
+                          </div>
+                        </a>
                       )}
 
                       {entry.insight.length > 0 && (
@@ -1525,6 +1759,48 @@ function App() {
                         <div className="diary-block">
                           <span className="dblock-label">Personal Reflection</span>
                           {entry.reflection.map((para, i) => <p key={i}>{para}</p>)}
+                        </div>
+                      )}
+
+                      {entry.sections && entry.sections.length > 0 && (
+                        entry.sections.map((section, i) => (
+                          <div key={i} className="diary-block">
+                            <span className="dblock-label">{section.label}</span>
+                            {section.paragraphs.map((para, j) => <p key={j}>{para}</p>)}
+                          </div>
+                        ))
+                      )}
+
+                      {entry.notesPhotos && entry.notesPhotos.length > 0 && (
+                        <div className="diary-notes-gallery">
+                          <span className="diary-notes-label">Field Notes</span>
+                          <div className="diary-notes-grid">
+                            {entry.notesPhotos.map((photo, i) => (
+                              <div key={i} className="diary-notes-item">
+                                <div className="diary-notes-frame">
+                                  <DiaryImage
+                                    src={photo.src}
+                                    alt={photo.caption}
+                                    caption={photo.caption}
+                                    className="diary-notes-img"
+                                    onOpen={openLightbox}
+                                  />
+                                </div>
+                                <p className="diary-notes-caption">{photo.caption}</p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+
+                      {entry.pullQuotes && entry.pullQuotes.length > 0 && (
+                        <div className="diary-pull-quotes">
+                          {entry.pullQuotes.map((quote, i) => (
+                            <blockquote key={i} className="diary-pull-quote">
+                              <span className="diary-pull-quote-mark" aria-hidden="true">"</span>
+                              <p>{quote}</p>
+                            </blockquote>
+                          ))}
                         </div>
                       )}
 
@@ -1756,6 +2032,97 @@ function App() {
             </div>
           </div>
 
+        </section>
+
+        {/* ════════════ CLOSING ════════════ */}
+        <section id="closing" className="section section--closing">
+
+          {/* ── Hero ── */}
+          <div className="closing-hero">
+            <span className="part-tag">✦ Course Closing Snapshot</span>
+            <h2 className="sec-title closing-title">
+              Final Reflection —<br />Leadership Growth at a Glance
+            </h2>
+            <p className="closing-subtitle">
+              A visual snapshot of how I grew through self-awareness, team practice, systems thinking, and facilitation over six weeks.
+            </p>
+            <p className="closing-sentence">
+              This course helped me move from noticing leadership to practicing it.
+            </p>
+          </div>
+
+          {/* ── Capability Map ── */}
+          <div className="closing-block">
+            <div className="closing-block-head">
+              <span className="closing-block-label">Capability Map</span>
+              <div className="closing-block-rule" aria-hidden="true" />
+            </div>
+            <div className="cap-grid">
+              {CAPABILITIES.map(cap => (
+                <div key={cap.id} className="cap-card" style={{ '--cc': cap.color }}>
+                  <div className="cap-bar" aria-hidden="true" />
+                  <span className="cap-id" aria-hidden="true">{cap.id}</span>
+                  <h3 className="cap-name">{cap.name}</h3>
+                  <p className="cap-phrase">{cap.phrase}</p>
+                  <div className="cap-bottom">
+                    <CapabilityArc progress={cap.progress} color={cap.color} />
+                    <span className="cap-label">{cap.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── How I Grew ── */}
+          <div className="closing-block">
+            <div className="closing-block-head">
+              <span className="closing-block-label">How I Grew</span>
+              <div className="closing-block-rule" aria-hidden="true" />
+            </div>
+            <div className="journey-strip">
+              {JOURNEY_MILESTONES.map((m, i) => (
+                <div key={i} className="journey-step">
+                  <div className="journey-node">
+                    <span>{i + 1}</span>
+                  </div>
+                  <div className="journey-body">
+                    <span className="journey-step-title">{m.title}</span>
+                    <span className="journey-step-line">{m.line}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── What I'm Taking Forward ── */}
+          <div className="closing-block">
+            <div className="closing-block-head">
+              <span className="closing-block-label">What I'm Taking Forward</span>
+              <div className="closing-block-rule" aria-hidden="true" />
+            </div>
+            <div className="takeaway-card">
+              {TAKEAWAYS.map((t, i) => (
+                <div key={i} className="takeaway-row">
+                  <span className="takeaway-glyph" aria-hidden="true">✦</span>
+                  <p className="takeaway-text">{t}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Closing Note ── */}
+          <div className="closing-note">
+            <div className="closing-note-fold" aria-hidden="true" />
+            <div className="closing-note-head">
+              <span className="closing-note-icon" aria-hidden="true">✦</span>
+              <span className="closing-note-label">A Note to Close</span>
+            </div>
+            <p className="closing-note-body">
+              Looking back, I can see that my growth in this course was not about becoming louder or more certain all at once. It was more about becoming more aware, more intentional, and more willing to step into team situations with care. I now have a clearer sense of how I want to lead, and how I want to keep growing.
+            </p>
+            <p className="closing-note-sign">— Yulin Li, 2026</p>
+          </div>
+
           <footer className="site-footer">
             The Gentle Growth Log · Leadership Diary by Yulin Li
           </footer>
@@ -1816,6 +2183,14 @@ function App() {
             )}
           </div>
         </div>
+      )}
+
+      {lightboxSrc && (
+        <Lightbox
+          src={lightboxSrc}
+          caption={lightboxCaption}
+          onClose={closeLightbox}
+        />
       )}
     </div>
   )
